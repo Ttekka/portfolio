@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gwendal Riquier — Portfolio BTS SIO</title>
+<meta name="description" content="Portfolio de Gwendal Riquier, étudiant en BTS SIO option SISR. Projets d'administration systèmes, réseaux et infrastructure.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#top" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link">À propos</a></li>
+      <li><a href="#skills" class="nav-link">Compétences</a></li>
+      <li><a href="#projects" class="nav-link">Projets</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="#contact" class="btn btn-primary">Me contacter</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="nav-link">À propos</a>
+  <a href="#skills" class="nav-link">Compétences</a>
+  <a href="#projects" class="nav-link">Projets</a>
+  <a href="#contact" class="nav-link">Contact</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-kicker"><span class="pulse"></span> Disponible pour alternance / stage</div>
+        <h1>
+          <span>Gwendal Riquier</span>
+          <span class="text-gradient">BTS SIO — option SISR</span>
+        </h1>
+        <p class="lead">
+          Passionné d'informatique depuis le collège, j'ai décidé d'en faire mon avenir.
+          Je me forme à l'administration des systèmes, des réseaux et des infrastructures —
+          et je documente chaque projet comme un vrai cas d'usage professionnel.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            Voir mes projets
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Me contacter</a>
+        </div>
+        <div class="hero-socials">
+          <a class="icon-btn" href="https://github.com/Ttekka" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          </a>
+          <a class="icon-btn" href="mailto:riquiergwendal@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18v12H3V6Zm0 0 9 7 9-7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-bar"><span></span><span></span><span></span><b>gwendal@debian: ~/minecraft-server</b></div>
+        <div class="terminal-body" id="termBody"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="eyebrow">À propos</div>
+          <h2>Étudiant en informatique, orienté infrastructure</h2>
+        </div>
+        <div class="about-text reveal">
+          <p>
+            Je m'appelle <b>Gwendal Riquier</b>, actuellement en 2ᵉ année de <b>BTS SIO</b>, option
+            <b>SISR</b> (Solutions d'Infrastructure, Systèmes et Réseaux). L'informatique me passionne
+            depuis le collège : c'est en bricolant mes propres machines et services que j'ai compris
+            que c'était le domaine dans lequel je voulais construire mon avenir.
+          </p>
+          <p>
+            Côté SISR, je me forme à l'administration des systèmes Linux et Windows, à la mise en
+            réseau, à la sécurité et à la supervision de services. J'aime comprendre comment les
+            choses fonctionnent « sous le capot » et documenter mes projets comme de vraies études
+            de cas, pour progresser et garder une trace propre de ce que j'apprends.
+          </p>
+          <div class="stat-row">
+            <div class="stat"><b>2ᵉ</b><span>année de BTS SIO</span></div>
+            <div class="stat"><b>SISR</b><span>Option infrastructure</span></div>
+            <div class="stat"><b>Linux</b><span>Terrain de jeu favori</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills" style="padding-top:0;">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Compétences</div>
+        <h2>Domaines travaillés en BTS SIO — SISR</h2>
+        <p>Les quatre piliers de mon option, illustrés par ce que je mets en pratique dans mes projets.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <h4>Administration systèmes</h4>
+          <p>Installation et configuration de systèmes Linux (Debian), gestion des utilisateurs, des droits et des services.</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+          <h4>Réseaux &amp; connectivité</h4>
+          <p>Ports TCP/IP, NAT, tunnels d'accès distant (playit.gg), diagnostic réseau local / Internet.</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4Z"/></svg></div>
+          <h4>Sécurité</h4>
+          <p>Whitelists, niveaux de permissions, dépôts de paquets signés (GPG), réduction de la surface d'exposition.</p>
+        </div>
+        <div class="skill-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l4-10 4 10M6.5 12h3M14 7h6M14 12h6M14 17h6"/></svg></div>
+          <h4>Services &amp; automatisation</h4>
+          <p>Déploiement de services applicatifs, scripts shell, unités <code>systemd</code>, sauvegardes planifiées.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Projets</div>
+        <h2>Études de cas</h2>
+        <p>Chaque projet est documenté comme en entreprise : contexte, mise en œuvre, sécurité et compétences mobilisées.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 : Minecraft server -->
+        <a href="projects/serveur-minecraft.html" class="project-card reveal">
+          <div class="glow"></div>
+          <div class="project-status status-live"><span class="dot"></span> Fonctionnel</div>
+          <div class="thumb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><circle cx="6" cy="6.5" r="1" fill="currentColor"/><circle cx="6" cy="17.5" r="1" fill="currentColor"/></svg>
+          </div>
+          <h3>Serveur Minecraft sous Debian</h3>
+          <p class="desc">
+            Hébergement d'un serveur Minecraft Java (Paper) sur Linux, accessible depuis Internet via
+            un tunnel playit.gg, sécurisé par whitelist et administré en service systemd.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Debian</span>
+            <span class="tag">systemd</span>
+            <span class="tag">Réseau</span>
+            <span class="tag">Sécurité</span>
+          </div>
+          <span class="card-link">Voir l'étude de cas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <!-- Project 2 : à venir -->
+        <div class="project-card is-soon reveal">
+          <div class="project-status status-soon"><span class="dot"></span> À venir</div>
+          <div class="thumb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h3>Prochain projet SISR</h3>
+          <p class="desc">
+            Un nouveau projet d'infrastructure (virtualisation, Active Directory ou supervision) sera
+            documenté ici prochainement.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Bientôt</span>
+          </div>
+          <span class="card-link" style="color:var(--text-faint);">En préparation</span>
+        </div>
+
+        <!-- Project 3 : à venir -->
+        <div class="project-card is-soon reveal">
+          <div class="project-status status-soon"><span class="dot"></span> À venir</div>
+          <div class="thumb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h3>Projet à venir</h3>
+          <p class="desc">
+            Cet emplacement accueillera un futur projet BTS SIO — stage, alternance ou réalisation
+            personnelle.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Bientôt</span>
+          </div>
+          <span class="card-link" style="color:var(--text-faint);">En préparation</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-box reveal">
+        <div>
+          <h2>On en discute ?</h2>
+          <p>Ouvert aux opportunités de stage et d'alternance en SISR. N'hésitez pas à me contacter.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:riquiergwendal@gmail.com" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3V6Zm0 0 9 7 9-7"/></svg>
+            Email
+          </a>
+          <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR. Conçu et codé à la main.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:riquiergwendal@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

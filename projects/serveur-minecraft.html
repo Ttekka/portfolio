@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serveur Minecraft sous Debian — Gwendal Riquier</title>
+<meta name="description" content="Étude de cas : hébergement d'un serveur Minecraft Java sur Debian, accès Internet via playit.gg, sécurité et administration systemd.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#skills">Compétences</a></li>
+      <li><a href="../index.html#projects" class="active">Projets</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#skills">Compétences</a>
+  <a href="../index.html#projects">Projets</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<header class="case-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>Serveur Minecraft</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">Linux · Debian</span>
+      <span class="tag">Réseau</span>
+      <span class="tag">systemd</span>
+      <span class="tag">Sécurité</span>
+    </div>
+    <h1>Héberger un serveur Minecraft Java sur Debian, accessible depuis Internet</h1>
+    <p class="summary">
+      Mise en place d'un serveur <b>Minecraft Java Edition (Paper)</b> sur un laptop personnel sous <b>Debian</b>,
+      rendu accessible à des amis depuis Internet grâce à un tunnel <b>playit.gg</b> — sans toucher à la box
+      ni exposer d'IP publique — puis administré en arrière-plan via <b>systemd</b>.
+    </p>
+    <div class="case-meta">
+      <div class="m"><b>Fonctionnel</b><span>Statut</span></div>
+      <div class="m"><b>Octobre 2026</b><span>Période</span></div>
+      <div class="m"><b>Debian · OpenJDK 25</b><span>Environnement</span></div>
+      <div class="m"><b>Whitelist entre amis</b><span>Accès</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Contexte et objectifs</h2>
+    <p>
+      Besoin de départ : héberger un serveur Minecraft pour jouer entre amis, sans louer d'offre
+      d'hébergement chez un prestataire. L'idée était d'en profiter pour mettre en pratique de vraies
+      compétences d'administration système et réseau plutôt que de passer par une solution clé en main.
+    </p>
+    <ul class="bullets">
+      <li>Installer et configurer un service applicatif sous Linux.</li>
+      <li>Le rendre accessible sur le réseau local <b>et</b> depuis Internet.</li>
+      <li>Le sécuriser (whitelist, comptes vérifiés, niveaux de droits) et l'administrer (RAM, joueurs, sauvegardes).</li>
+      <li>Automatiser son démarrage pour qu'il survive à un redémarrage de la machine.</li>
+    </ul>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
+      <p>Une première tentative a été faite sous Arch Linux, avant de réinstaller la machine sous Debian
+      pour simplifier l'installation : paquets plus stables et documentation plus abondante.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Architecture</h2>
+    <p>
+      Plutôt que d'ouvrir un port sur la box (NAT/PAT), impossible ici derrière certaines
+      configurations opérateur (CGNAT), le choix s'est porté sur un tunnel sortant <b>playit.gg</b> :
+      rien à configurer côté box, et l'IP réelle du laptop reste masquée.
+    </p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma d'architecture du serveur Minecraft">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/>
+          </marker>
+        </defs>
+        <!-- players -->
+        <rect x="20" y="30" width="150" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/>
+        <text x="95" y="55" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Joueurs</text>
+        <text x="95" y="73" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">(Internet)</text>
+
+        <rect x="20" y="140" width="150" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/>
+        <text x="95" y="165" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Joueur</text>
+        <text x="95" y="183" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">(réseau local)</text>
+
+        <!-- tunnel -->
+        <rect x="290" y="30" width="180" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/>
+        <text x="380" y="55" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">playit.gg</text>
+        <text x="380" y="73" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">tunnel sortant</text>
+
+        <!-- server -->
+        <rect x="560" y="85" width="180" height="90" rx="10" fill="#161f2b" stroke="#8b8ff8" stroke-opacity="0.6"/>
+        <text x="650" y="112" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Laptop Debian</text>
+        <text x="650" y="130" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Paper · Java 25</text>
+        <text x="650" y="148" fill="#9aa7b8" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="middle">:25565/TCP</text>
+
+        <!-- arrows -->
+        <line x1="170" y1="60" x2="288" y2="60" stroke="#4fe3c1" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="380" y1="90" x2="558" y2="117" stroke="#4fe3c1" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="170" y1="165" x2="558" y2="158" stroke="#8b8ff8" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+      </svg>
+    </div>
+    <p style="font-size:0.85rem;color:var(--text-faint);">
+      Trait plein : trajet via le tunnel playit.gg (Internet). Trait pointillé : accès direct en réseau local (IP privée du laptop).
+    </p>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="case-section">
+  <div class="container">
+    <h2>Stack technique</h2>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Élément</th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>Machine</td><td>Laptop personnel</td></tr>
+          <tr><td>Système</td><td><code>Debian</code> (GNU/Linux)</td></tr>
+          <tr><td>Logiciel serveur</td><td><code>Paper</code> (Minecraft Java Edition, recommandé pour la performance et les plugins)</td></tr>
+          <tr><td>Runtime</td><td>Java 25 (OpenJDK)</td></tr>
+          <tr><td>Port</td><td><code>25565/TCP</code></td></tr>
+          <tr><td>Accès externe</td><td>Tunnel <code>playit.gg</code></td></tr>
+          <tr><td>Exécution en continu</td><td><code>screen</code> ou service <code>systemd</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MISE EN OEUVRE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Mise en œuvre</h2>
+    <p>Les grandes étapes du déploiement, de la préparation du système à l'accès depuis Internet.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div><h4>Préparation du système</h4><p>Attribution des droits <code>sudo</code> à l'utilisateur, vérification avec <code>whoami</code> pour éviter de travailler par erreur sous le compte root.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div><h4>Installation du runtime Java</h4><p>Installation d'OpenJDK (headless, sans interface graphique) via <code>apt</code>, avec ajout d'un dépôt tiers signé (Adoptium/Temurin) comme solution de repli.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div><h4>Déploiement du serveur</h4><p>Téléchargement du <code>.jar</code> Paper, acceptation de l'EULA, premier lancement et vérification du message <code>Done</code>.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div><h4>Configuration &amp; mémoire</h4><p>Paramétrage de <code>server.properties</code> (whitelist, mode de jeu, distance de rendu) et allocation de la RAM via les options JVM <code>-Xms</code> / <code>-Xmx</code>, ajustée au laptop.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">5</div>
+        <div><h4>Administration des joueurs</h4><p>Gestion de la whitelist et des droits admin (<code>op</code>/<code>deop</code>) directement depuis la console ou en jeu.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">6</div>
+        <div><h4>Exécution en arrière-plan</h4><p>Lancement via <code>screen</code> pour un usage ponctuel, puis création d'une unité <code>systemd</code> pour un démarrage automatique et un redémarrage en cas de panne (<code>Restart=on-failure</code>).</p></div>
+      </div>
+      <div class="step">
+        <div class="num">7</div>
+        <div><h4>Accès depuis Internet</h4><p>Installation de l'agent <code>playit.gg</code>, création d'un tunnel « Minecraft Java » pointant sur le port local <code>25565</code>, génération d'une adresse publique dédiée.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">8</div>
+        <div><h4>Sauvegardes</h4><p>Archivage du dossier <code>world</code> avec <code>tar</code> avant chaque mise à jour de Minecraft ou de Java, pour pouvoir restaurer en cas de problème.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Sécurité &amp; continuité de service</h2>
+    <ul class="bullets">
+      <li><b>Whitelist activée</b> : seuls les joueurs explicitement autorisés peuvent rejoindre.</li>
+      <li><b>Mode en ligne (<code>online-mode</code>) conservé</b> : vérification des comptes Microsoft officiels.</li>
+      <li><b>Dépôts tiers signés</b> (Adoptium, playit) via clés GPG, pour ne pas installer de paquets non vérifiés.</li>
+      <li><b>Surface d'exposition réduite</b> : pas de redirection de port ni d'IP publique exposée grâce au tunnel sortant.</li>
+      <li><b>Redémarrage automatique</b> du service en cas de panne, et sauvegardes régulières de la map.</li>
+    </ul>
+    <div class="callout ok">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+      <p>Résultat : un serveur stable, accessible uniquement par les amis invités, qui redémarre seul en cas d'incident.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="case-section">
+  <div class="container">
+    <h2>Compétences mobilisées (BTS SIO)</h2>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Domaine</th><th>Mise en œuvre dans le projet</th></tr></thead>
+        <tbody>
+          <tr><td>Installation d'un OS</td><td>Installation et préparation de Debian (utilisateur, <code>sudo</code>)</td></tr>
+          <tr><td>Gestion des paquets</td><td><code>apt</code>, ajout de dépôts tiers signés avec clés GPG</td></tr>
+          <tr><td>Déploiement d'un service</td><td>Installation d'un serveur applicatif Java, acceptation EULA</td></tr>
+          <tr><td>Configuration</td><td>Paramétrage de <code>server.properties</code>, allocation mémoire JVM</td></tr>
+          <tr><td>Administration Linux</td><td>Arborescence système, droits, <code>screen</code>, scripts shell</td></tr>
+          <tr><td>Services systemd</td><td>Création d'une unité <code>.service</code>, démarrage automatique, logs <code>journalctl</code></td></tr>
+          <tr><td>Réseau</td><td>Ports TCP, IP locale/publique, NAT, tunnel, CGNAT</td></tr>
+          <tr><td>Sécurité</td><td>Whitelist, mode en ligne, niveaux de permission, exposition réduite</td></tr>
+          <tr><td>Continuité de service</td><td>Sauvegardes, redémarrage automatique, gestion de l'alimentation</td></tr>
+          <tr><td>Dépannage</td><td>Diagnostic d'erreurs (chemins, utilisateur root, version de Java)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DEPANNAGE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Dépannage</h2>
+    <p>Quelques problèmes rencontrés et la méthode utilisée pour les résoudre :</p>
+    <ul class="bullets">
+      <li><b>Jarfile introuvable</b> : vérification du dossier courant et du nom exact du fichier téléchargé.</li>
+      <li><b>Dossier introuvable après <code>su</code></b> : repérer qu'on est passé root (<code>whoami</code>) et revenir à l'utilisateur normal avec <code>exit</code>.</li>
+      <li><b>Erreur de version de classe</b> : incompatibilité entre la version de Java installée et celle requise par le serveur.</li>
+      <li><b>Amis ne pouvant pas se connecter</b> : vérification croisée du serveur, du tunnel playit, de la whitelist et des versions client/serveur.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="container case-cta">
+  <div>
+    <h2 style="font-size:1.3rem;margin-bottom:8px;">Envie d'en discuter ?</h2>
+    <p style="color:var(--text-dim);">D'autres projets d'infrastructure arrivent prochainement sur ce portfolio.</p>
+  </div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:riquiergwendal@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
