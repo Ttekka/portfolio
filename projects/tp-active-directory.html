@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TP Active Directory, DNS, DHCP et GPO — Gwendal Riquier</title>
-<meta name="description" content="TP BTS SIO SISR : mise en place d'un domaine Active Directory avec DNS, DHCP et stratégies de groupe sur Windows Server 2022.">
+<title>TP Active Directory, DNS et GPO — Gwendal Riquier</title>
+<meta name="description" content="TP BTS SIO SISR : domaine bristendal.local sur Windows Server 2022 — Active Directory, DNS et stratégies de groupe.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,18 +47,18 @@
     <div class="case-tags">
       <span class="tag">Windows Server</span>
       <span class="tag">Active Directory</span>
-      <span class="tag">DNS / DHCP</span>
+      <span class="tag">DNS</span>
       <span class="tag">GPO</span>
     </div>
-    <h1>Domaine Active Directory avec DNS, DHCP et stratégies de groupe</h1>
+    <h1>Domaine bristendal.local : Active Directory, DNS et stratégies de groupe</h1>
     <p class="summary">
-      Mise en place d'une <b>gestion centralisée</b> des comptes et des postes pour la PME fictive Bristendal : deux <b>contrôleurs de domaine</b> Windows Server 2022 virtualisés sous Proxmox, avec les rôles <b>AD DS, DNS et DHCP</b> et des <b>GPO</b> appliquées automatiquement.
+      Mise en place du contrôleur de domaine <b>Windows Server 2022</b> de la maquette Bristendal : annuaire <b>Active Directory</b>, zone <b>DNS</b> avec l'enregistrement de l'intranet, et deux <b>GPO</b> (politique de mot de passe du domaine et fond d'écran du poste client).
     </p>
     <div class="case-meta">
       <div class="m"><b>Réalisé</b><span>Statut</span></div>
       <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
-      <div class="m"><b>Windows Server 2022 · Proxmox</b><span>Environnement</span></div>
-      <div class="m"><b>Scénario Bristendal</b><span>Contexte</span></div>
+      <div class="m"><b>Windows Server 2022</b><span>Environnement</span></div>
+      <div class="m"><b>bristendal.local</b><span>Domaine</span></div>
     </div>
   </div>
 </header>
@@ -68,17 +68,17 @@
   <div class="container">
     <h2>Contexte et objectifs</h2>
     <p>
-      Chez Bristendal, chaque poste a ses propres comptes locaux : aucune gestion centralisée des utilisateurs, des droits ni des réglages. L'objectif est de créer un domaine fiable et redondant.
+      Le domaine bristendal.local doit centraliser l'authentification et la résolution de noms. Le contrôleur de domaine est placé dans le VLAN 20 Admin (192.168.20.10). Dans cette maquette, toutes les machines sont en <b>adresse IP statique</b> : il n'y a pas de DHCP.
     </p>
     <ul class="bullets">
-      <li>Centraliser l'authentification des utilisateurs dans un annuaire <b>Active Directory</b>.</li>
-      <li>Assurer la résolution de noms (<b>DNS</b>) et l'adressage automatique (<b>DHCP</b>).</li>
-      <li>Garantir la continuité de service avec un <b>second contrôleur de domaine</b>.</li>
-      <li>Appliquer automatiquement les réglages des postes avec des <b>GPO</b>.</li>
+      <li>Centraliser les comptes dans l'annuaire <b>Active Directory</b>.</li>
+      <li>Résoudre les noms internes, dont <b>intranet.bristendal.local</b>.</li>
+      <li>Imposer une <b>politique de mot de passe</b> robuste à tout le domaine.</li>
+      <li>Appliquer un réglage au poste client par <b>GPO</b> (fond d'écran).</li>
     </ul>
     <div class="callout">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
-      <p>TP réalisé en cours à l'ESUP. « Bristendal » est une PME fictive de 35 salariés qui sert de scénario commun à mes TP d'infrastructure.</p>
+      <p>TP réalisé en cours à l'ESUP. Bristendal (domaine bristendal.local) est la maquette d'infrastructure que j'ai montée et documentée : deux routeurs Cisco en HSRP, trois switchs en Rapid-PVST, un contrôleur de domaine et une DMZ derrière OPNsense.</p>
     </div>
   </div>
 </section>
@@ -86,12 +86,24 @@
 <!-- ARCHITECTURE -->
 <section class="case-section">
   <div class="container">
-    <h2>Architecture</h2>
-    <p>Deux contrôleurs de domaine répliqués, hébergés sur un hyperviseur Proxmox VE, desservent les postes clients du domaine.</p>
+    <h2>Place dans l'infrastructure</h2>
+    <p>Le DC est joint depuis le VLAN 10 Client grâce au routage inter-VLAN des routeurs HSRP ; il résout le nom de l'intranet situé en DMZ.</p>
     <div class="diagram-wrap">
-      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma de l'architecture Active Directory"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="10" y="10" width="420" height="210" rx="14" fill="none" stroke="#2a3340" stroke-dasharray="6 6"/><text x="26" y="34" fill="#9aa7b8" font-size="11" font-family="JetBrains Mono, monospace">PROXMOX VE</text><rect x="40" y="48" width="360" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="220.0" y="75.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">DC01 · Windows Server 2022</text><text x="220.0" y="93.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">AD DS · DNS · DHCP</text><rect x="40" y="146" width="360" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="220.0" y="173.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">DC02 · Windows Server 2022</text><text x="220.0" y="191.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">AD DS · DNS · DHCP de secours</text><line x1="220" y1="108" x2="220" y2="146" stroke="#9aa7b8" stroke-width="2" stroke-dasharray="4 4"/><text x="232" y="132" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif">réplication</text><rect x="540" y="48" width="200" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="640.0" y="75.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Postes clients</text><text x="640.0" y="93.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">joints au domaine</text><rect x="540" y="146" width="200" height="60" rx="10" fill="#161f2b" stroke="#f5c56b" stroke-opacity="0.6"/><text x="640.0" y="173.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">GPO</text><text x="640.0" y="191.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">à l'ouverture de session</text><line x1="400" y1="78" x2="538" y2="78" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="400" y1="176" x2="538" y2="176" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/></svg>
+      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du contrôleur de domaine dans la maquette"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="20" y="85" width="190" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="115.0" y="112.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">PC client</text><text x="115.0" y="130.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">VLAN 10 · 192.168.10.10</text><rect x="285" y="85" width="190" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="380.0" y="112.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Routeurs HSRP</text><text x="380.0" y="130.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">passerelle .254</text><rect x="550" y="20" width="190" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="645.0" y="47.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">DC Windows 2022</text><text x="645.0" y="65.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">VLAN 20 · 192.168.20.10</text><rect x="550" y="150" width="190" height="60" rx="10" fill="#161f2b" stroke="#f5c56b" stroke-opacity="0.6"/><text x="645.0" y="177.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Intranet</text><text x="645.0" y="195.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">DMZ · 172.16.42.252</text><line x1="210" y1="115" x2="283" y2="115" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="475" y1="105" x2="548" y2="55" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="475" y1="125" x2="548" y2="175" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/></svg>
     </div>
-
+    <div class="table-wrap" style="margin-top:20px;">
+      <table class="k">
+        <thead><tr><th>Paramètre (GPO du domaine)</th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>Longueur minimale du mot de passe</td><td>12 caractères</td></tr>
+          <tr><td>Exigences de complexité</td><td>Activé</td></tr>
+          <tr><td>Ancienneté maximale / minimale</td><td>90 jours / 1 jour</td></tr>
+          <tr><td>Historique</td><td>24 mots de passe</td></tr>
+          <tr><td>Chiffrement réversible</td><td>Désactivé</td></tr>
+          <tr><td>Verrouillage du compte</td><td>5 tentatives, 15 minutes</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -100,12 +112,11 @@
   <div class="container">
     <h2>Mise en œuvre</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div><h4>Installation des serveurs</h4><p>Création de deux machines virtuelles Windows Server 2022 sous Proxmox VE, adressage IP fixe et nommage.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h4>Promotion en contrôleurs de domaine</h4><p>Installation du rôle AD DS, création de la forêt sur DC01, puis ajout de DC02 comme second contrôleur répliqué.</p></div></div>
-      <div class="step"><div class="num">3</div><div><h4>DNS et DHCP</h4><p>Zones de recherche directe et inversée, étendue DHCP avec basculement entre les deux serveurs.</p></div></div>
-      <div class="step"><div class="num">4</div><div><h4>Organisation de l'annuaire</h4><p>Unités d'organisation par service, groupes selon la méthode <b>AGDLP</b> : comptes → groupes globaux → groupes de domaine local qui portent les droits NTFS.</p></div></div>
-      <div class="step"><div class="num">5</div><div><h4>Stratégies de groupe</h4><p>GPO de connexion des lecteurs réseau par service, verrouillage de session et restrictions sur les postes.</p></div></div>
-      <div class="step"><div class="num">6</div><div><h4>Tests</h4><p>Jonction d'un poste au domaine, ouverture de session d'un utilisateur, vérification des lecteurs et des droits, arrêt de DC01 pour tester la redondance.</p></div></div>
+      <div class="step"><div class="num">1</div><div><h4>Contrôleur de domaine</h4><p>Installation de Windows Server 2022, IP statique 192.168.20.10 (passerelle HSRP 192.168.20.254), rôle AD DS et création du domaine bristendal.local.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h4>DNS</h4><p>Zone bristendal.local et enregistrement A <code>intranet</code> vers 172.16.42.252, créé dans le Gestionnaire DNS ou avec <code>Add-DnsServerResourceRecordA</code>.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h4>GPO de mot de passe</h4><p>Définie au niveau du <b>domaine</b> (Configuration ordinateur › Paramètres de sécurité › Stratégies de comptes) : une GPO liée à une OU ne s'appliquerait pas aux comptes du domaine.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h4>GPO de fond d'écran</h4><p>Stratégie appliquée au poste client.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h4>Vérifications</h4><p><code>gpupdate /force</code>, <code>gpresult /r</code>, <code>net accounts /domain</code> ; un mot de passe trop simple est refusé ; <code>nslookup intranet.bristendal.local</code> répond 172.16.42.252.</p></div></div>
     </div>
   </div>
 </section>
@@ -118,9 +129,9 @@
       <table class="k">
         <thead><tr><th>Compétence</th><th>Mise en œuvre</th></tr></thead>
         <tbody>
-          <tr><td>Mettre à disposition des utilisateurs un service informatique</td><td>Déploiement et tests des services AD DS, DNS et DHCP</td></tr>
-          <tr><td>Gérer le patrimoine informatique</td><td>Niveaux d'habilitation (AGDLP), continuité de service avec deux contrôleurs</td></tr>
-          <tr><td>Installer, tester et déployer une solution d'infrastructure (bloc 2)</td><td>Installation des serveurs, promotion, tests de redondance</td></tr>
+          <tr><td>Mettre à disposition des utilisateurs un service informatique</td><td>Annuaire, DNS et accès à l'intranet par son nom</td></tr>
+          <tr><td>Gérer le patrimoine informatique</td><td>Niveaux d'habilitation et politique de mot de passe du domaine</td></tr>
+          <tr><td>Installer, tester et déployer une solution d'infrastructure (bloc 2)</td><td>Installation du DC, tests DNS et GPO</td></tr>
         </tbody>
       </table>
     </div>

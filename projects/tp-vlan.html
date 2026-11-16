@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TP Segmentation du réseau en VLAN — Gwendal Riquier</title>
-<meta name="description" content="TP BTS SIO SISR : segmentation du réseau en VLAN, liens trunk 802.1Q et routage inter-VLAN sur commutateur Cisco de niveau 3.">
+<title>TP VLAN et Rapid-PVST — Gwendal Riquier</title>
+<meta name="description" content="TP BTS SIO SISR : VLAN, trunks 802.1Q et Rapid-PVST sur trois commutateurs Catalyst 2960 en triangle.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,23 +42,23 @@
 <header class="case-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP VLAN</span>
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP VLAN et Rapid-PVST</span>
     </div>
     <div class="case-tags">
-      <span class="tag">Cisco IOS</span>
+      <span class="tag">Cisco</span>
       <span class="tag">VLAN</span>
       <span class="tag">802.1Q</span>
-      <span class="tag">Packet Tracer</span>
+      <span class="tag">Rapid-PVST</span>
     </div>
-    <h1>Segmentation du réseau en VLAN et routage inter-VLAN</h1>
+    <h1>VLAN et Rapid-PVST sur trois commutateurs en triangle</h1>
     <p class="summary">
-      Découpage du réseau « à plat » de Bristendal en <b>VLAN par service</b>, avec des liens <b>trunk 802.1Q</b>, du <b>routage inter-VLAN</b> sur un commutateur de niveau 3, un relais DHCP et des <b>ACL</b> pour protéger l'administration. Maquette sous Packet Tracer avant la mise en place.
+      Configuration des trois <b>Catalyst 2960</b> de la maquette Bristendal : un <b>VLAN par usage</b>, des <b>trunks 802.1Q</b> entre les switchs et vers les routeurs, et <b>Rapid-PVST</b> pour garder un câblage redondant en triangle sans boucle.
     </p>
     <div class="case-meta">
       <div class="m"><b>Réalisé</b><span>Statut</span></div>
       <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
-      <div class="m"><b>Cisco IOS · Packet Tracer</b><span>Environnement</span></div>
-      <div class="m"><b>Scénario Bristendal</b><span>Contexte</span></div>
+      <div class="m"><b>Cisco Catalyst 2960</b><span>Environnement</span></div>
+      <div class="m"><b>bristendal.local</b><span>Domaine</span></div>
     </div>
   </div>
 </header>
@@ -68,17 +68,17 @@
   <div class="container">
     <h2>Contexte et objectifs</h2>
     <p>
-      Chez Bristendal, postes, serveurs et imprimantes partagent le même domaine de diffusion : un poste compromis voit tout le réseau, et le trafic de diffusion pèse sur les performances.
+      Les clients, l'administration et l'accès à la DMZ doivent être séparés, et le réseau doit continuer à fonctionner si un câble entre switchs est coupé.
     </p>
     <ul class="bullets">
-      <li>Séparer les flux par service avec des <b>VLAN</b>.</li>
-      <li>Permettre la communication entre VLAN de façon contrôlée (<b>routage inter-VLAN</b>).</li>
-      <li>Conserver un <b>DHCP centralisé</b> pour tous les VLAN.</li>
-      <li>Restreindre l'accès au VLAN d'<b>administration</b>.</li>
+      <li>Un <b>VLAN par usage</b>, avec la même configuration sur les trois switchs.</li>
+      <li>Isoler les ports inutilisés dans un <b>VLAN parking</b>.</li>
+      <li>Relier les switchs en <b>triangle</b> pour la redondance.</li>
+      <li>Éviter les boucles avec <b>Rapid-PVST</b>.</li>
     </ul>
     <div class="callout">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
-      <p>TP réalisé en cours à l'ESUP. « Bristendal » est une PME fictive de 35 salariés qui sert de scénario commun à mes TP d'infrastructure.</p>
+      <p>TP réalisé en cours à l'ESUP. Bristendal (domaine bristendal.local) est la maquette d'infrastructure que j'ai montée et documentée : deux routeurs Cisco en HSRP, trois switchs en Rapid-PVST, un contrôleur de domaine et une DMZ derrière OPNsense.</p>
     </div>
   </div>
 </section>
@@ -86,34 +86,33 @@
 <!-- ARCHITECTURE -->
 <section class="case-section">
   <div class="container">
-    <h2>Architecture et configuration</h2>
-    <p>Un commutateur de cœur de niveau 3 route entre les VLAN ; les commutateurs d'accès lui sont reliés par des liens trunk.</p>
+    <h2>Topologie et VLAN</h2>
+    <p>Les trois switchs forment un triangle : le spanning-tree bloque un lien et le réactive si un autre tombe. Le PC client, le DC et Proxmox sont branchés sur SW1.</p>
     <div class="diagram-wrap">
-      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma de la segmentation en VLAN"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="260" y="12" width="240" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="380.0" y="39.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">SW-CORE · niveau 3</text><text x="380.0" y="57.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">routage inter-VLAN · SVI</text><line x1="300" y1="72" x2="120" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="360" y1="72" x2="300" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="400" y1="72" x2="460" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="460" y1="72" x2="640" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><rect x="30" y="142" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="115.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 10</text><text x="115.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Direction</text><rect x="215" y="142" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="300.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 20</text><text x="300.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Utilisateurs</text><rect x="400" y="142" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="485.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 30</text><text x="485.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Serveurs · DHCP</text><rect x="585" y="142" width="160" height="60" rx="10" fill="#161f2b" stroke="#f5c56b" stroke-opacity="0.6"/><text x="665.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 99</text><text x="665.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Administration (ACL)</text></svg>
-    </div>
-    <div class="terminal" style="margin-top:20px;">
-      <div class="terminal-bar"><span></span><span></span><span></span><b>SW-CORE · Cisco IOS</b></div>
-      <div class="terminal-body" style="min-height:0;">
-        <div class="line"><span class="prompt">SW(config)#</span> vlan 10</div>
-        <div class="line"><span class="prompt">SW(config-vlan)#</span> name DIRECTION</div>
-        <div class="line"><span class="prompt">SW(config)#</span> interface vlan 20</div>
-        <div class="line"><span class="prompt">SW(config-if)#</span> ip address 10.0.20.254 255.255.255.0</div>
-        <div class="line"><span class="prompt">SW(config-if)#</span> ip helper-address 10.0.30.10</div>
-        <div class="line"><span class="prompt">SW(config)#</span> interface gi1/0/24</div>
-        <div class="line"><span class="prompt">SW(config-if)#</span> switchport mode trunk</div>
-        <div class="line"><span class="prompt">SW(config)#</span> ip routing</div>
-      </div>
+      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du triangle de commutateurs"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="60" y="20" width="170" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="145.0" y="47.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">SW1</text><text x="145.0" y="65.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">PC, DC, Proxmox</text><rect x="530" y="20" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="615.0" y="47.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">SW3</text><text x="615.0" y="65.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">trunk vers R2</text><rect x="295" y="150" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="380.0" y="177.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">SW2</text><text x="380.0" y="195.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Rapid-PVST</text><line x1="230" y1="50" x2="530" y2="50" stroke="#4fe3c1" stroke-width="2"/><line x1="145" y1="80" x2="330" y2="150" stroke="#4fe3c1" stroke-width="2"/><line x1="615" y1="80" x2="430" y2="150" stroke="#4fe3c1" stroke-width="2"/><text x="380" y="40" fill="#9aa7b8" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="middle">Fa0/45 – Fa0/46</text><text x="200" y="135" fill="#9aa7b8" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="middle">Fa0/48 – Fa0/47</text><text x="565" y="135" fill="#9aa7b8" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="middle">Fa0/47 – Fa0/48</text></svg>
     </div>
     <div class="table-wrap" style="margin-top:20px;">
       <table class="k">
-        <thead><tr><th>VLAN</th><th>Nom</th><th>Réseau</th><th>Passerelle (SVI)</th></tr></thead>
+        <thead><tr><th>VLAN</th><th>Nom</th><th>Réseau</th><th>Ports (chaque switch)</th></tr></thead>
         <tbody>
-          <tr><td>10</td><td>Direction</td><td>10.0.10.0/24</td><td>10.0.10.254</td></tr>
-          <tr><td>20</td><td>Utilisateurs</td><td>10.0.20.0/24</td><td>10.0.20.254</td></tr>
-          <tr><td>30</td><td>Serveurs</td><td>10.0.30.0/24</td><td>10.0.30.254</td></tr>
-          <tr><td>99</td><td>Administration</td><td>10.0.99.0/24</td><td>10.0.99.254</td></tr>
+          <tr><td>10</td><td>Client</td><td>192.168.10.0/24</td><td>Fa0/1 à Fa0/12</td></tr>
+          <tr><td>20</td><td>Admin</td><td>192.168.20.0/24</td><td>Fa0/13 à Fa0/24</td></tr>
+          <tr><td>30</td><td>DMZ</td><td>192.168.30.0/29</td><td>Fa0/25 à Fa0/36</td></tr>
+          <tr><td>99</td><td>Parking</td><td>–</td><td>Fa0/37 à Fa0/44</td></tr>
+          <tr><td>Trunk</td><td>802.1Q</td><td>–</td><td>Fa0/45 à Fa0/48</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="terminal" style="margin-top:20px;">
+      <div class="terminal-bar"><span></span><span></span><span></span><b>SW1 · configuration (extrait)</b></div>
+      <div class="terminal-body" style="min-height:0;">
+        <div class="line"><span class="prompt">spanning-tree mode rapid-pvst</span></div>
+        <div class="line">interface FastEthernet0/1</div>
+        <div class="line">&#160;switchport access vlan 10</div>
+        <div class="line">&#160;switchport mode access</div>
+        <div class="line">interface FastEthernet0/45</div>
+        <div class="line">&#160;switchport mode trunk</div>
+      </div>
     </div>
   </div>
 </section>
@@ -123,12 +122,12 @@
   <div class="container">
     <h2>Mise en œuvre</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div><h4>Plan d'adressage</h4><p>Un VLAN et un sous-réseau /24 par usage : Direction, Utilisateurs, Serveurs, Administration.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h4>Maquette Packet Tracer</h4><p>Validation de la topologie et des configurations avant la mise en place.</p></div></div>
-      <div class="step"><div class="num">3</div><div><h4>Création des VLAN et des ports</h4><p>VLAN créés sur les commutateurs, ports d'accès affectés, liens entre commutateurs en <b>trunk 802.1Q</b>.</p></div></div>
-      <div class="step"><div class="num">4</div><div><h4>Routage inter-VLAN</h4><p>Interfaces virtuelles (SVI) sur le commutateur de cœur, servant de passerelle à chaque VLAN, et activation de <code>ip routing</code>.</p></div></div>
-      <div class="step"><div class="num">5</div><div><h4>Relais DHCP et ACL</h4><p><code>ip helper-address</code> vers le serveur DHCP du VLAN 30, ACL limitant l'accès au VLAN 99 au poste d'administration.</p></div></div>
-      <div class="step"><div class="num">6</div><div><h4>Tests</h4><p>ping et tracert entre VLAN, obtention d'une adresse DHCP dans chaque VLAN, vérification du blocage vers le VLAN 99.</p></div></div>
+      <div class="step"><div class="num">1</div><div><h4>VLAN et ports d'accès</h4><p>Création des VLAN 10, 20, 30 et 99, affectation des plages de ports identiques sur SW1, SW2 et SW3.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h4>Trunks 802.1Q</h4><p>Ports Fa0/45 à Fa0/48 en trunk : liaisons entre switchs et vers R1 (SW1 Fa0/47) et R2 (SW3 Fa0/48).</p></div></div>
+      <div class="step"><div class="num">3</div><div><h4>Rapid-PVST</h4><p>Une instance de spanning-tree par VLAN, convergence rapide. Le root bridge est élu automatiquement (plus petit identifiant).</p></div></div>
+      <div class="step"><div class="num">4</div><div><h4>Vérifications</h4><p><code>show vlan brief</code>, <code>show interfaces trunk</code>, <code>show spanning-tree</code> (un port Alternate ou Blocking dans le triangle).</p></div></div>
+      <div class="step"><div class="num">5</div><div><h4>Test de panne</h4><p>Débrancher le lien SW1 Fa0/45 pendant un ping continu : le trafic reprend par l'autre chemin.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h4>Améliorations identifiées</h4><p>Fixer le root bridge (priorité 4096), éteindre les ports du VLAN 99, limiter les VLAN autorisés sur les trunks avec un VLAN natif dédié, ajouter un VLAN de management en SSH.</p></div></div>
     </div>
   </div>
 </section>
@@ -141,9 +140,9 @@
       <table class="k">
         <thead><tr><th>Compétence</th><th>Mise en œuvre</th></tr></thead>
         <tbody>
-          <tr><td>Concevoir une solution d'infrastructure réseau (bloc 2)</td><td>Plan d'adressage et découpage en VLAN</td></tr>
-          <tr><td>Installer, tester et déployer une solution d'infrastructure (bloc 2)</td><td>Configuration Cisco, tests de connectivité</td></tr>
-          <tr><td>Gérer le patrimoine informatique</td><td>Restriction des accès d'administration par ACL</td></tr>
+          <tr><td>Concevoir une solution d'infrastructure réseau (bloc 2)</td><td>Découpage en VLAN et topologie redondante</td></tr>
+          <tr><td>Installer, tester et déployer une solution d'infrastructure (bloc 2)</td><td>Configuration des switchs, tests de panne de lien</td></tr>
+          <tr><td>Gérer le patrimoine informatique</td><td>Continuité de service grâce à la redondance des liens</td></tr>
         </tbody>
       </table>
     </div>

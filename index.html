@@ -233,10 +233,10 @@
           <div class="thumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 10v3M12 13l-5 2M12 13l5 2"/></svg>
           </div>
-          <h3>Active Directory, DNS, DHCP et GPO</h3>
+          <h3>Active Directory, DNS et GPO</h3>
           <p class="desc">
-            Domaine Windows Server 2022 avec deux contrôleurs sous Proxmox, DNS, DHCP en basculement,
-            groupes AGDLP et stratégies de groupe.
+            Domaine bristendal.local sur Windows Server 2022 : annuaire, zone DNS de l'intranet,
+            politique de mot de passe du domaine et GPO de fond d'écran.
           </p>
           <div class="tag-row">
             <span class="tag">Windows Server</span>
@@ -255,59 +255,59 @@
           <div class="thumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="6" rx="1.5"/><path d="M7 7h.01M11 7h.01M15 7h.01M6 10v4M12 10v4M18 10v4"/><rect x="3" y="14" width="6" height="5" rx="1"/><rect x="9" y="14" width="6" height="5" rx="1"/><rect x="15" y="14" width="6" height="5" rx="1"/></svg>
           </div>
-          <h3>Segmentation du réseau en VLAN</h3>
+          <h3>VLAN et Rapid-PVST</h3>
           <p class="desc">
-            VLAN par service, trunks 802.1Q, routage inter-VLAN sur commutateur Cisco de niveau 3,
-            relais DHCP et ACL.
+            Trois Catalyst 2960 en triangle : un VLAN par usage, VLAN parking, trunks 802.1Q et
+            Rapid-PVST contre les boucles.
           </p>
           <div class="tag-row">
             <span class="tag">Cisco</span>
             <span class="tag">VLAN</span>
-            <span class="tag">Packet Tracer</span>
+            <span class="tag">Spanning-tree</span>
           </div>
           <span class="card-link">Voir l'étude de cas
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
         </a>
 
-        <!-- TP : pfSense -->
-        <a href="projects/tp-pfsense.html" class="project-card reveal">
+        <!-- TP : HSRP / NAT -->
+        <a href="projects/tp-hsrp-nat.html" class="project-card reveal">
           <div class="glow"></div>
           <div class="project-status status-live"><span class="dot"></span> TP réalisé</div>
           <div class="thumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v5M15 9v5M9 14v6"/></svg>
           </div>
-          <h3>Pare-feu pfSense, DMZ et VPN</h3>
+          <h3>Routage inter-VLAN, HSRP et NAT</h3>
           <p class="desc">
-            Zones WAN, LAN et DMZ, filtrage au moindre privilège, site web publié en DMZ et accès
-            distant par OpenVPN.
+            Deux routeurs Cisco 2800 : router-on-a-stick, passerelle virtuelle HSRP avec bascule
+            automatique et NAT overload vers Internet.
           </p>
           <div class="tag-row">
-            <span class="tag">pfSense</span>
-            <span class="tag">OpenVPN</span>
-            <span class="tag">Sécurité</span>
+            <span class="tag">Cisco</span>
+            <span class="tag">HSRP</span>
+            <span class="tag">NAT</span>
           </div>
           <span class="card-link">Voir l'étude de cas
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
         </a>
 
-        <!-- TP : Zabbix -->
-        <a href="projects/tp-zabbix.html" class="project-card reveal">
+        <!-- TP : DMZ OPNsense -->
+        <a href="projects/tp-dmz-opnsense.html" class="project-card reveal">
           <div class="glow"></div>
           <div class="project-status status-live"><span class="dot"></span> TP réalisé</div>
           <div class="thumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M6 13l3-3 3 2 4-5 2 2M8 21h8M12 17v4"/></svg>
           </div>
-          <h3>Supervision avec Zabbix</h3>
+          <h3>DMZ et intranet derrière OPNsense</h3>
           <p class="desc">
-            Agents sur les serveurs, SNMP v3 sur le réseau, déclencheurs, alertes par e-mail et tableau
-            de bord.
+            Pare-feu OPNsense sous Proxmox, intranet Apache 2 et Debian d'administration isolés en
+            DMZ, accès par intranet.bristendal.local.
           </p>
           <div class="tag-row">
-            <span class="tag">Zabbix</span>
-            <span class="tag">SNMP</span>
-            <span class="tag">Debian</span>
+            <span class="tag">OPNsense</span>
+            <span class="tag">Proxmox</span>
+            <span class="tag">Apache</span>
           </div>
           <span class="card-link">Voir l'étude de cas
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>

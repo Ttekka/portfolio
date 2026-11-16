@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Routage inter-VLAN, HSRP et NAT — Gwendal Riquier</title>
+<meta name="description" content="TP BTS SIO SISR : routage inter-VLAN router-on-a-stick, haute disponibilité HSRP et NAT overload sur deux routeurs Cisco 2800.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#skills">Compétences</a></li>
+      <li><a href="../index.html#projects" class="active">Projets</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#skills">Compétences</a>
+  <a href="../index.html#projects">Projets</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<header class="case-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP HSRP et NAT</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">Cisco</span>
+      <span class="tag">HSRP</span>
+      <span class="tag">NAT</span>
+      <span class="tag">Routage</span>
+    </div>
+    <h1>Routage inter-VLAN, haute disponibilité HSRP et NAT</h1>
+    <p class="summary">
+      Deux routeurs <b>Cisco 2800</b> assurent le <b>routage inter-VLAN</b> (router-on-a-stick), la <b>haute disponibilité</b> de la passerelle avec <b>HSRP</b>, et l'accès à Internet par <b>NAT overload</b>.
+    </p>
+    <div class="case-meta">
+      <div class="m"><b>Réalisé</b><span>Statut</span></div>
+      <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
+      <div class="m"><b>Cisco 2800 Series</b><span>Environnement</span></div>
+      <div class="m"><b>bristendal.local</b><span>Domaine</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Contexte et objectifs</h2>
+    <p>
+      Chaque VLAN a besoin d'une passerelle toujours disponible et d'un accès à Internet. Si le routeur principal tombe, le secours doit reprendre sans reconfigurer les postes.
+    </p>
+    <ul class="bullets">
+      <li>Router entre les VLAN 10, 20 et 30 avec des <b>sous-interfaces 802.1Q</b>.</li>
+      <li>Donner à chaque VLAN une <b>passerelle virtuelle HSRP</b> commune à R1 et R2.</li>
+      <li>Partager l'accès Internet avec le <b>NAT overload</b> (PAT).</li>
+      <li>Router le trafic destiné à la <b>DMZ</b> vers le pare-feu OPNsense.</li>
+    </ul>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
+      <p>TP réalisé en cours à l'ESUP. Bristendal (domaine bristendal.local) est la maquette d'infrastructure que j'ai montée et documentée : deux routeurs Cisco en HSRP, trois switchs en Rapid-PVST, un contrôleur de domaine et une DMZ derrière OPNsense.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Architecture</h2>
+    <p>R1 est actif (priorité 110) et R2 en secours ; les deux ont preempt. Chaque routeur est relié en trunk à un switch différent.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma des deux routeurs HSRP"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="270" y="10" width="220" height="50" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="380.0" y="32.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">Extérieur</text><text x="380.0" y="50.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">passerelle 192.168.3.1</text><rect x="80" y="95" width="220" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="190.0" y="122.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">R1 · actif</text><text x="190.0" y="140.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">priorité 110 · Fa0/0 .110</text><rect x="460" y="95" width="220" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="570.0" y="122.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">R2 · secours</text><text x="570.0" y="140.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">priorité 100 · Fa0/0 .111</text><line x1="300" y1="125" x2="460" y2="125" stroke="#9aa7b8" stroke-width="2" stroke-dasharray="4 4"/><text x="380" y="117" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">HSRP · VIP par VLAN</text><rect x="80" y="180" width="220" height="45" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="190.0" y="199.5" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">SW1</text><text x="190.0" y="217.5" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">trunk Fa0/47</text><rect x="460" y="180" width="220" height="45" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="570.0" y="199.5" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">SW3</text><text x="570.0" y="217.5" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">trunk Fa0/48</text><line x1="190" y1="95" x2="300" y2="60" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="570" y1="95" x2="460" y2="60" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="190" y1="155" x2="190" y2="178" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="570" y1="155" x2="570" y2="178" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/></svg>
+    </div>
+    <div class="table-wrap" style="margin-top:20px;">
+      <table class="k">
+        <thead><tr><th>Groupe HSRP</th><th>Interface</th><th>Adresse virtuelle</th><th>R1 / R2</th></tr></thead>
+        <tbody>
+          <tr><td>10</td><td>Fa0/0</td><td>192.168.3.100</td><td>.110 / .111</td></tr>
+          <tr><td>10</td><td>Fa0/1.10</td><td>192.168.10.254</td><td>.1 / .2</td></tr>
+          <tr><td>20</td><td>Fa0/1.20</td><td>192.168.20.254</td><td>.1 / .2</td></tr>
+          <tr><td>30</td><td>Fa0/1.30</td><td>192.168.30.1</td><td>.4 / .5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="terminal" style="margin-top:20px;">
+      <div class="terminal-bar"><span></span><span></span><span></span><b>R1 · running-config (extrait)</b></div>
+      <div class="terminal-body" style="min-height:0;">
+        <div class="line"><span class="prompt">interface FastEthernet0/1.10</span></div>
+        <div class="line">&#160;encapsulation dot1Q 10</div>
+        <div class="line">&#160;ip address 192.168.10.1 255.255.255.0</div>
+        <div class="line">&#160;ip nat inside</div>
+        <div class="line">&#160;standby 10 ip 192.168.10.254</div>
+        <div class="line">&#160;standby 10 priority 110</div>
+        <div class="line">&#160;standby 10 preempt</div>
+        <div class="line"><span class="ok">ip route 172.16.42.240 255.255.255.240 192.168.30.3</span></div>
+        <div class="line">ip nat inside source list 1 interface FastEthernet0/0 overload</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISE EN OEUVRE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Mise en œuvre</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h4>Sous-interfaces</h4><p>Sur R1 et R2, une sous-interface 802.1Q par VLAN sur Fa0/1 (.10, .20, .30), marquées <code>ip nat inside</code>.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h4>HSRP</h4><p>Une adresse virtuelle par réseau, utilisée comme passerelle par les machines. R1 priorité 110, R2 priorité 100, preempt sur les deux.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h4>NAT et routes</h4><p>NAT overload sur Fa0/0 (<code>ip nat outside</code>), ACL 1 des réseaux internes, route par défaut vers 192.168.3.1, route vers la DMZ via 192.168.30.3.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h4>Dépannage</h4><p>La route et l'ACL visaient d'abord 172.16.42.0/28, qui ne couvre que .0 à .15 : les serveurs en .252 et .253 étaient injoignables. Corrigé le 03/11/2026 en 172.16.42.240/28.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h4>Tests</h4><p><code>show standby brief</code> (R1 Active, R2 Standby), <code>ping -t 192.168.10.254</code> en débranchant R1 puis en le rebranchant (preempt), <code>show ip nat translations</code>.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h4>Améliorations identifiées</h4><p>Suivi de l'interface externe (<code>standby track</code>), authentification HSRP md5, filtrage entre VLAN par ACL.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="case-section">
+  <div class="container">
+    <h2>Compétences mobilisées (référentiel BTS SIO)</h2>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Compétence</th><th>Mise en œuvre</th></tr></thead>
+        <tbody>
+          <tr><td>Installer, tester et déployer une solution d'infrastructure (bloc 2)</td><td>Routage inter-VLAN, HSRP, NAT et tests de bascule</td></tr>
+          <tr><td>Exploiter, dépanner et superviser une solution d'infrastructure (bloc 2)</td><td>Diagnostic et correction de la route et de l'ACL vers la DMZ</td></tr>
+          <tr><td>Gérer le patrimoine informatique</td><td>Continuité de service de la passerelle</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="container case-cta">
+  <div>
+    <h2 style="font-size:1.3rem;margin-bottom:8px;">Envie d'en discuter ?</h2>
+    <p style="color:var(--text-dim);">D'autres TP et projets viendront compléter ce portfolio au fil de la formation.</p>
+  </div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:riquiergwendal@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
