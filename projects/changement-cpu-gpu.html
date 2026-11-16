@@ -53,14 +53,15 @@
     <h1>Remplacement du processeur et de la carte graphique d'un poste de travail</h1>
     <p class="summary">
       Projet mené en <b>équipe de trois</b> en 1re année de BTS SIO : faire évoluer un poste devenu trop
-      lent en changeant son <b>processeur</b> et sa <b>carte graphique</b>, de l'étude de compatibilité
-      jusqu'aux tests de stabilité.
+      lent en changeant son <b>processeur</b> (Ryzen 5 5500 → <b>Ryzen 7 5700X</b>) et sa
+      <b>carte graphique</b> (RTX 3050 → <b>RTX 5070</b>), de l'étude de compatibilité jusqu'aux tests
+      de stabilité.
     </p>
     <div class="case-meta">
       <div class="m"><b>Terminé</b><span>Statut</span></div>
       <div class="m"><b>1re année de BTS (2025–2026)</b><span>Période</span></div>
       <div class="m"><b>Équipe de 3 étudiants</b><span>Organisation</span></div>
-      <div class="m"><b>Poste Windows</b><span>Environnement</span></div>
+      <div class="m"><b>Plateforme AMD AM4</b><span>Environnement</span></div>
     </div>
   </div>
 </header>
@@ -68,6 +69,15 @@
 <section class="case-section">
   <div class="container">
     <h2>Contexte et objectifs</h2>
+    <div class="table-wrap" style="margin-bottom:20px;">
+      <table class="k">
+        <thead><tr><th>Composant</th><th>Avant</th><th>Après</th></tr></thead>
+        <tbody>
+          <tr><td>Processeur</td><td>AMD Ryzen 5 5500 (6 cœurs)</td><td><b>AMD Ryzen 7 5700X (8 cœurs)</b></td></tr>
+          <tr><td>Carte graphique</td><td>NVIDIA GeForce RTX 3050</td><td><b>NVIDIA GeForce RTX 5070</b></td></tr>
+        </tbody>
+      </table>
+    </div>
     <p>
       Le poste ne suffisait plus pour son usage. Plutôt que de le remplacer entièrement, l'objectif était
       de le faire évoluer en changeant les deux composants qui limitaient ses performances, tout en
@@ -90,12 +100,12 @@
       <table class="k">
         <thead><tr><th>Point vérifié</th><th>Pourquoi</th></tr></thead>
         <tbody>
-          <tr><td>Socket</td><td>Le processeur doit utiliser le même socket que la carte mère.</td></tr>
-          <tr><td>BIOS</td><td>La version du BIOS doit reconnaître le nouveau processeur : mise à jour <b>avant</b> le changement.</td></tr>
-          <tr><td>Alimentation</td><td>Puissance suffisante et connecteurs PCIe adaptés à la nouvelle carte graphique.</td></tr>
-          <tr><td>PCIe</td><td>Un slot PCIe x16 disponible pour la carte graphique.</td></tr>
-          <tr><td>Encombrement</td><td>La longueur de la carte graphique doit tenir dans le boîtier.</td></tr>
-          <tr><td>Refroidissement</td><td>Ventirad adapté à l'enveloppe thermique (TDP) du processeur.</td></tr>
+          <tr><td>Socket</td><td>Le Ryzen 5 5500 et le Ryzen 7 5700X utilisent tous les deux le socket <b>AM4</b> : la carte mère est conservée.</td></tr>
+          <tr><td>BIOS</td><td>La version du BIOS doit reconnaître le Ryzen 7 5700X : vérification, et mise à jour <b>avant</b> le changement si besoin.</td></tr>
+          <tr><td>Alimentation</td><td>La RTX 5070 consomme bien plus que la RTX 3050 : NVIDIA conseille une alimentation de 650 W, avec les bons connecteurs.</td></tr>
+          <tr><td>PCIe</td><td>Un slot PCIe x16 disponible. Le Ryzen 5 5500 est limité au PCIe 3.0, alors que le 5700X gère le PCIe 4.0 (sur carte mère compatible).</td></tr>
+          <tr><td>Encombrement</td><td>La longueur de la RTX 5070 doit tenir dans le boîtier.</td></tr>
+          <tr><td>Refroidissement</td><td>Ventirad adapté au TDP de 65 W du Ryzen 7 5700X.</td></tr>
         </tbody>
       </table>
     </div>
