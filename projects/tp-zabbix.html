@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Supervision avec Zabbix — Gwendal Riquier</title>
+<meta name="description" content="TP BTS SIO SISR : supervision d'une infrastructure avec Zabbix — agents, SNMP, déclencheurs et alertes.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#skills">Compétences</a></li>
+      <li><a href="../index.html#projects" class="active">Projets</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#skills">Compétences</a>
+  <a href="../index.html#projects">Projets</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<header class="case-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP Zabbix</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">Zabbix</span>
+      <span class="tag">Supervision</span>
+      <span class="tag">SNMP</span>
+      <span class="tag">Debian</span>
+    </div>
+    <h1>Supervision de l'infrastructure avec Zabbix</h1>
+    <p class="summary">
+      Mise en place d'une <b>supervision</b> pour Bristendal : un serveur <b>Zabbix</b> surveille les serveurs (agents) et les équipements réseau (<b>SNMP</b>), déclenche des <b>alertes</b> et garde un historique pour analyser les pannes.
+    </p>
+    <div class="case-meta">
+      <div class="m"><b>Réalisé</b><span>Statut</span></div>
+      <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
+      <div class="m"><b>Zabbix · Debian · MariaDB</b><span>Environnement</span></div>
+      <div class="m"><b>Scénario Bristendal</b><span>Contexte</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Contexte et objectifs</h2>
+    <p>
+      Chez Bristendal, les pannes sont découvertes par les utilisateurs. Le service informatique veut passer d'un mode réactif à un mode <b>proactif</b> : être alerté avant eux.
+    </p>
+    <ul class="bullets">
+      <li>Surveiller la disponibilité et les ressources des <b>serveurs</b>.</li>
+      <li>Superviser les <b>équipements réseau</b> sur lesquels on ne peut rien installer.</li>
+      <li>Être <b>alerté</b> automatiquement en cas de problème.</li>
+      <li>Conserver un <b>historique</b> pour analyser les incidents.</li>
+    </ul>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
+      <p>TP réalisé en cours à l'ESUP. « Bristendal » est une PME fictive de 35 salariés qui sert de scénario commun à mes TP d'infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Architecture</h2>
+    <p>Le serveur Zabbix collecte les données des agents installés sur les serveurs et interroge les équipements réseau en SNMP.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma de la supervision Zabbix"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="280" y="85" width="200" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="380.0" y="112.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">Serveur Zabbix</text><text x="380.0" y="130.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Debian · MariaDB</text><rect x="20" y="15" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="105.0" y="42.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">DC01 / DC02</text><text x="105.0" y="60.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">agent Zabbix</text><rect x="20" y="155" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="105.0" y="182.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">SRV-WEB</text><text x="105.0" y="200.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">agent Zabbix</text><rect x="570" y="15" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="655.0" y="42.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">SW-CORE</text><text x="655.0" y="60.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">SNMP v3</text><rect x="570" y="155" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="655.0" y="182.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">pfSense</text><text x="655.0" y="200.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">SNMP v3</text><line x1="190" y1="45" x2="278" y2="100" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="190" y1="185" x2="278" y2="130" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="570" y1="45" x2="482" y2="100" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="570" y1="185" x2="482" y2="130" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/></svg>
+    </div>
+    <div class="table-wrap" style="margin-top:20px;">
+      <table class="k">
+        <thead><tr><th>Déclencheur</th><th>Ce qu'il détecte</th></tr></thead>
+        <tbody>
+          <tr><td>Hôte injoignable</td><td>Serveur ou équipement qui ne répond plus</td></tr>
+          <tr><td>Espace disque faible</td><td>Disque bientôt plein sur un serveur</td></tr>
+          <tr><td>Charge processeur</td><td>Processeur saturé pendant plusieurs minutes</td></tr>
+          <tr><td>Service arrêté</td><td>Service critique arrêté (DNS, serveur web…)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MISE EN OEUVRE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Mise en œuvre</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h4>Installation du serveur</h4><p>Zabbix installé sur Debian avec une base MariaDB et son interface web.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h4>Agents</h4><p>Installation et configuration de l'agent Zabbix sur les serveurs Windows et Linux.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h4>SNMP</h4><p>Supervision du commutateur de cœur et du pare-feu en SNMP v3 (authentifié et chiffré).</p></div></div>
+      <div class="step"><div class="num">4</div><div><h4>Déclencheurs</h4><p>Seuils et conditions qui créent un problème : disque, processeur, service, disponibilité.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h4>Alertes et tableau de bord</h4><p>Envoi d'un e-mail au service informatique, tableau de bord des problèmes en cours.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h4>Tests</h4><p>Arrêt volontaire d'un service et remplissage d'un disque de test pour vérifier les alertes.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="case-section">
+  <div class="container">
+    <h2>Compétences mobilisées (référentiel BTS SIO)</h2>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Compétence</th><th>Mise en œuvre</th></tr></thead>
+        <tbody>
+          <tr><td>Exploiter, dépanner et superviser une solution d'infrastructure (bloc 2)</td><td>Supervision des serveurs et du réseau, alertes</td></tr>
+          <tr><td>Répondre aux incidents et aux demandes d'assistance</td><td>Détection proactive des incidents, historique pour le diagnostic</td></tr>
+          <tr><td>Gérer le patrimoine informatique</td><td>Vérification des conditions de continuité de service</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="container case-cta">
+  <div>
+    <h2 style="font-size:1.3rem;margin-bottom:8px;">Envie d'en discuter ?</h2>
+    <p style="color:var(--text-dim);">D'autres TP et projets viendront compléter ce portfolio au fil de la formation.</p>
+  </div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:riquiergwendal@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

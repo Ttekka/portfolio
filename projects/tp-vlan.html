@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Segmentation du réseau en VLAN — Gwendal Riquier</title>
+<meta name="description" content="TP BTS SIO SISR : segmentation du réseau en VLAN, liens trunk 802.1Q et routage inter-VLAN sur commutateur Cisco de niveau 3.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#skills">Compétences</a></li>
+      <li><a href="../index.html#projects" class="active">Projets</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#skills">Compétences</a>
+  <a href="../index.html#projects">Projets</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<header class="case-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP VLAN</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">Cisco IOS</span>
+      <span class="tag">VLAN</span>
+      <span class="tag">802.1Q</span>
+      <span class="tag">Packet Tracer</span>
+    </div>
+    <h1>Segmentation du réseau en VLAN et routage inter-VLAN</h1>
+    <p class="summary">
+      Découpage du réseau « à plat » de Bristendal en <b>VLAN par service</b>, avec des liens <b>trunk 802.1Q</b>, du <b>routage inter-VLAN</b> sur un commutateur de niveau 3, un relais DHCP et des <b>ACL</b> pour protéger l'administration. Maquette sous Packet Tracer avant la mise en place.
+    </p>
+    <div class="case-meta">
+      <div class="m"><b>Réalisé</b><span>Statut</span></div>
+      <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
+      <div class="m"><b>Cisco IOS · Packet Tracer</b><span>Environnement</span></div>
+      <div class="m"><b>Scénario Bristendal</b><span>Contexte</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Contexte et objectifs</h2>
+    <p>
+      Chez Bristendal, postes, serveurs et imprimantes partagent le même domaine de diffusion : un poste compromis voit tout le réseau, et le trafic de diffusion pèse sur les performances.
+    </p>
+    <ul class="bullets">
+      <li>Séparer les flux par service avec des <b>VLAN</b>.</li>
+      <li>Permettre la communication entre VLAN de façon contrôlée (<b>routage inter-VLAN</b>).</li>
+      <li>Conserver un <b>DHCP centralisé</b> pour tous les VLAN.</li>
+      <li>Restreindre l'accès au VLAN d'<b>administration</b>.</li>
+    </ul>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
+      <p>TP réalisé en cours à l'ESUP. « Bristendal » est une PME fictive de 35 salariés qui sert de scénario commun à mes TP d'infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Architecture et configuration</h2>
+    <p>Un commutateur de cœur de niveau 3 route entre les VLAN ; les commutateurs d'accès lui sont reliés par des liens trunk.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma de la segmentation en VLAN"><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4fe3c1"/></marker></defs><rect x="260" y="12" width="240" height="60" rx="10" fill="#121a24" stroke="#4fe3c1" stroke-opacity="0.5"/><text x="380.0" y="39.0" fill="#4fe3c1" font-size="13" font-family="JetBrains Mono, monospace" text-anchor="middle">SW-CORE · niveau 3</text><text x="380.0" y="57.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">routage inter-VLAN · SVI</text><line x1="300" y1="72" x2="120" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="360" y1="72" x2="300" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="400" y1="72" x2="460" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><line x1="460" y1="72" x2="640" y2="140" stroke="#4fe3c1" stroke-width="2" marker-end="url(#a)"/><rect x="30" y="142" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="115.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 10</text><text x="115.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Direction</text><rect x="215" y="142" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="300.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 20</text><text x="300.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Utilisateurs</text><rect x="400" y="142" width="170" height="60" rx="10" fill="#161f2b" stroke="#2a3340"/><text x="485.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 30</text><text x="485.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Serveurs · DHCP</text><rect x="585" y="142" width="160" height="60" rx="10" fill="#161f2b" stroke="#f5c56b" stroke-opacity="0.6"/><text x="665.0" y="169.0" fill="#e9edf3" font-size="13" font-family="Inter, sans-serif" text-anchor="middle">VLAN 99</text><text x="665.0" y="187.0" fill="#9aa7b8" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">Administration (ACL)</text></svg>
+    </div>
+    <div class="terminal" style="margin-top:20px;">
+      <div class="terminal-bar"><span></span><span></span><span></span><b>SW-CORE · Cisco IOS</b></div>
+      <div class="terminal-body" style="min-height:0;">
+        <div class="line"><span class="prompt">SW(config)#</span> vlan 10</div>
+        <div class="line"><span class="prompt">SW(config-vlan)#</span> name DIRECTION</div>
+        <div class="line"><span class="prompt">SW(config)#</span> interface vlan 20</div>
+        <div class="line"><span class="prompt">SW(config-if)#</span> ip address 10.0.20.254 255.255.255.0</div>
+        <div class="line"><span class="prompt">SW(config-if)#</span> ip helper-address 10.0.30.10</div>
+        <div class="line"><span class="prompt">SW(config)#</span> interface gi1/0/24</div>
+        <div class="line"><span class="prompt">SW(config-if)#</span> switchport mode trunk</div>
+        <div class="line"><span class="prompt">SW(config)#</span> ip routing</div>
+      </div>
+    </div>
+    <div class="table-wrap" style="margin-top:20px;">
+      <table class="k">
+        <thead><tr><th>VLAN</th><th>Nom</th><th>Réseau</th><th>Passerelle (SVI)</th></tr></thead>
+        <tbody>
+          <tr><td>10</td><td>Direction</td><td>10.0.10.0/24</td><td>10.0.10.254</td></tr>
+          <tr><td>20</td><td>Utilisateurs</td><td>10.0.20.0/24</td><td>10.0.20.254</td></tr>
+          <tr><td>30</td><td>Serveurs</td><td>10.0.30.0/24</td><td>10.0.30.254</td></tr>
+          <tr><td>99</td><td>Administration</td><td>10.0.99.0/24</td><td>10.0.99.254</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MISE EN OEUVRE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Mise en œuvre</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h4>Plan d'adressage</h4><p>Un VLAN et un sous-réseau /24 par usage : Direction, Utilisateurs, Serveurs, Administration.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h4>Maquette Packet Tracer</h4><p>Validation de la topologie et des configurations avant la mise en place.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h4>Création des VLAN et des ports</h4><p>VLAN créés sur les commutateurs, ports d'accès affectés, liens entre commutateurs en <b>trunk 802.1Q</b>.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h4>Routage inter-VLAN</h4><p>Interfaces virtuelles (SVI) sur le commutateur de cœur, servant de passerelle à chaque VLAN, et activation de <code>ip routing</code>.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h4>Relais DHCP et ACL</h4><p><code>ip helper-address</code> vers le serveur DHCP du VLAN 30, ACL limitant l'accès au VLAN 99 au poste d'administration.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h4>Tests</h4><p>ping et tracert entre VLAN, obtention d'une adresse DHCP dans chaque VLAN, vérification du blocage vers le VLAN 99.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="case-section">
+  <div class="container">
+    <h2>Compétences mobilisées (référentiel BTS SIO)</h2>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Compétence</th><th>Mise en œuvre</th></tr></thead>
+        <tbody>
+          <tr><td>Concevoir une solution d'infrastructure réseau (bloc 2)</td><td>Plan d'adressage et découpage en VLAN</td></tr>
+          <tr><td>Installer, tester et déployer une solution d'infrastructure (bloc 2)</td><td>Configuration Cisco, tests de connectivité</td></tr>
+          <tr><td>Gérer le patrimoine informatique</td><td>Restriction des accès d'administration par ACL</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="container case-cta">
+  <div>
+    <h2 style="font-size:1.3rem;margin-bottom:8px;">Envie d'en discuter ?</h2>
+    <p style="color:var(--text-dim);">D'autres TP et projets viendront compléter ce portfolio au fil de la formation.</p>
+  </div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:riquiergwendal@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
