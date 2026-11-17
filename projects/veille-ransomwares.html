@@ -88,13 +88,39 @@
 
 <section class="case-section">
   <div class="container">
-    <h2>Ce que ma veille m'a appris</h2>
-    <div class="steps">
-      <div class="step"><div class="num">1</div><div><h3>Le Ransomware-as-a-Service</h3><p>Des groupes louent leur rançongiciel à des « affiliés » qui mènent les attaques et partagent la rançon.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h3>La double extorsion</h3><p>Les données sont volées avant d'être chiffrées : l'attaquant menace de les publier si la rançon n'est pas payée.</p></div></div>
-      <div class="step"><div class="num">3</div><div><h3>Les hyperviseurs ciblés</h3><p>En chiffrant un serveur de virtualisation comme VMware ESXi, l'attaquant bloque d'un coup toutes les machines virtuelles.</p></div></div>
-      <div class="step"><div class="num">4</div><div><h3>La riposte s'organise</h3><p>En février 2024, l'opération policière internationale Cronos a démantelé une partie de l'infrastructure du groupe LockBit.</p></div></div>
+    <h2>Mon journal de veille</h2>
+    <p>Chaque note suit le même format : la source, ce qu’elle dit, et ce que ça change pour moi. La date est celle de la publication de la source ; la plus récente est en haut.</p>
+    <div class="notes">
+      <article class="note">
+        <div class="note-h"><time datetime="2026-07-22">22/07/2026</time><span>Clubic, d’après une analyse d’Arctic Wolf</span></div>
+        <h3>Une faille des VPN Palo Alto sert de porte d’entrée au rançongiciel Qilin</h3>
+        <p><b>Résumé.</b> La vulnérabilité CVE-2026-0257 du composant GlobalProtect (PAN-OS) est exploitée pour entrer dans les réseaux. Les attaquants volent ensuite des identifiants administrateur et déploient Qilin. Recommandations : appliquer le correctif, couper les sessions VPN ouvertes, relire les journaux VPN, et en cas de compromission réinitialiser les comptes à privilèges et deux fois le compte KRBTGT de l’Active Directory.</p>
+        <p class="pour-moi"><b>Ce que ça change pour moi.</b> Les équipements de bordure sont la cible n°1 : sur le lab Bristendal, je garde OPNsense à jour et son interface d’administration n’est joignable que depuis le VLAN 20. Et je sais maintenant pourquoi on réinitialise KRBTGT deux fois (RP 4).</p>
+        <a class="src-link" href="https://www.clubic.com/actualite-622309-alerte-sur-les-vpn-palo-alto-des-hackers-exploitent-une-faille-pour-deployer-le-ransomware-qilin.html" target="_blank" rel="noopener">Lire la source</a>
+      </article>
+      <article class="note">
+        <div class="note-h"><time datetime="2026-03-11">11/03/2026</time><span>ANSSI, Panorama de la cybermenace 2025</span></div>
+        <h3>Moins de rançongiciels en France, mais beaucoup plus de vols de données</h3>
+        <p><b>Résumé.</b> 128 compromissions par rançongiciel ont été portées à la connaissance de l’ANSSI en 2025, un chiffre en légère baisse. Les exfiltrations de données passent de 130 à 196 incidents. Les souches les plus vues sont Qilin (21 %), Akira (9 %) et LockBit 3.0 (5 %). Les PME, TPE et ETI restent les plus touchées, les établissements de santé remontent à 8 %.</p>
+        <p class="pour-moi"><b>Ce que ça change pour moi.</b> Chiffrer n’est plus le seul risque : un attaquant peut voler sans rien bloquer. La segmentation (RP 5) et la règle « DMZ vers réseau interne interdit » de la RP 7 limitent ce qu’il peut atteindre.</p>
+        <a class="src-link" href="https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-002.pdf" target="_blank" rel="noopener">Lire la source (PDF)</a>
+      </article>
+      <article class="note">
+        <div class="note-h"><time datetime="2026-03-11">11/03/2026</time><span>ANSSI, Panorama de la cybermenace 2025</span></div>
+        <h3>Des attaquants se font passer pour le service informatique</h3>
+        <p><b>Résumé.</b> Le groupe Scattered Spider a compromis plusieurs entreprises françaises en 2025, notamment dans le luxe. Dans au moins un cas, les attaquants ont usurpé le service informatique pour obtenir des accès. Le rapport note aussi que des outils de prise en main à distance légitimes, comme AnyDesk, sont détournés avant une attaque.</p>
+        <p class="pour-moi"><b>Ce que ça change pour moi.</b> C’est exactement mon poste de support N1 (RP 1 et RP 2) : je vérifie l’identité de l’utilisateur avant toute réinitialisation de mot de passe, et je n’utilise que l’outil de prise en main à distance validé par le client.</p>
+        <a class="src-link" href="https://cert.cyber.gouv.fr/uploads/CERTFR-2026-CTI-002.pdf" target="_blank" rel="noopener">Lire la source (PDF)</a>
+      </article>
+      <article class="note">
+        <div class="note-h"><time datetime="2026-03-01">03/2026</time><span>Cybermalveillance.gouv.fr, rapport d’activité 2025</span></div>
+        <h3>Le rançongiciel reste la menace la plus lourde pour une organisation</h3>
+        <p><b>Résumé.</b> Pour les entreprises et associations, le rançongiciel est 4e avec 8,1 % des demandes d’assistance, en hausse de 9 %. Pour les collectivités, il représente 13,1 % des demandes. Le rapport le décrit comme la menace la plus redoutable et la plus impactante pour une organisation.</p>
+        <p class="pour-moi"><b>Ce que ça change pour moi.</b> Une PME comme Bristendal doit pouvoir repartir sans payer : c’est pour ça que la sauvegarde testée est mon prochain chantier sur le lab.</p>
+        <a class="src-link" href="https://www.cybermalveillance.gouv.fr/medias/2026/03/RA_2025_Cybermalveillance_gouv_fr.pdf" target="_blank" rel="noopener">Lire la source (PDF)</a>
+      </article>
     </div>
+    <p class="note-foot">Notes rédigées à partir des sources citées ; chaque chiffre vient du document lié.</p>
   </div>
 </section>
 
@@ -106,7 +132,8 @@
       <li><b>Authentification multifacteur</b> sur les accès d'administration et les accès distants.</li>
       <li><b>Segmentation du réseau</b> (VLAN, pare-feu) pour limiter la propagation.</li>
       <li><b>Correctifs</b> appliqués rapidement, en priorité sur les équipements exposés à Internet.</li>
-      <li><b>Supervision et alertes</b> pour repérer une activité anormale au plus tôt.</li>
+      <li><b>Supervision et alertes</b> pour repérer une activité anormale au plus tôt, y compris une fuite de données sans chiffrement.</li>
+      <li><b>Vérification d’identité</b> avant toute réinitialisation de mot de passe au support.</li>
     </ul>
     <div class="callout ok">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>

@@ -418,3 +418,15 @@ table.synth-e5 tbody th a:hover { color: var(--accent); text-decoration: underli
   #projects { padding-top: 36px; }
   .section-head { margin-bottom: 20px; }
 }
+
+/* ---------- Journal de veille ---------- */
+.notes { display: grid; gap: 16px; margin-top: 20px; max-width: 860px; }
+.note { position: relative; padding: 20px 22px 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.note::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--vei); }
+.note-h { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; font-size: 13px; color: var(--text-3); }
+.note-h time { font-weight: 600; color: var(--vei); font-variant-numeric: tabular-nums; }
+.note h3 { font-size: 17px; font-weight: 600; margin: 8px 0 10px; }
+.note p { color: var(--text-2); font-size: 15px; margin-top: 8px; max-width: 72ch; }
+.note .pour-moi { background: var(--vei-bg); color: var(--text); border-radius: var(--radius-sm); padding: 10px 12px; }
+.note .src-link { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 500; }
+.note-foot { font-size: 13px; color: var(--text-3) !important; margin-top: 16px !important; }

@@ -59,7 +59,7 @@
     </div>
     <div class="case-meta">
       <div class="m"><span>Statut</span><b>Terminé</b></div>
-      <div class="m"><span>Période</span><b>1re année de BTS (2025–2026)</b></div>
+      <div class="m"><span>Période</span><b>09/03/26 au 20/03/26 (1re année)</b></div>
       <div class="m"><span>Organisation</span><b>Équipe de 3 étudiants</b></div>
       <div class="m"><span>Environnement</span><b>Plateforme AMD AM4</b></div>
     </div>
@@ -121,6 +121,18 @@
       <div class="step"><div class="num">3</div><div><h3>Montage</h3><p>Bracelet antistatique, retrait de l'ancien processeur, nettoyage, nouvelle pâte thermique, installation de la carte graphique et câblage propre.</p></div></div>
       <div class="step"><div class="num">4</div><div><h3>Pilotes</h3><p>Suppression complète des anciens pilotes graphiques avec DDU, puis installation des pilotes du constructeur.</p></div></div>
       <div class="step"><div class="num">5</div><div><h3>Tests et validation</h3><p>Tests de stabilité sous charge avec OCCT, suivi des températures avec HWiNFO, comparaison des performances avant / après avec Cinebench.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container">
+    <h2>Difficulté rencontrée et résolution</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h3>Le symptôme</h3><p>Après le montage, le poste démarre et fonctionne au bureau, mais il redémarre seul au bout de quelques minutes du test de charge OCCT sur la carte graphique.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Le diagnostic</h3><p>Les températures relevées dans HWiNFO restent normales, donc ce n’est pas une surchauffe. En vérifiant le câblage, nous trouvons l’adaptateur d’alimentation de la RTX 5070 branché sur un seul câble PCIe de l’alimentation, avec ses deux connecteurs en cascade : la carte manquait de courant sous forte charge.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>La correction</h3><p>Nous branchons deux câbles PCIe séparés depuis l’alimentation, puis relançons OCCT : 30 minutes stables, sans redémarrage.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>La documentation</h3><p>Nous ajoutons à la procédure de montage une étape « deux câbles PCIe séparés, jamais en cascade » et un test de charge de 30 minutes avant de rendre le poste.</p></div></div>
     </div>
   </div>
 </section>
