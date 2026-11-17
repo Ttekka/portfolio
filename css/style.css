@@ -440,3 +440,45 @@ table.k td code, table.k td b{ color: var(--text); }
 }
 .mobile-menu.open{ opacity:1; transform:none; pointer-events:auto; }
 .mobile-menu a{ font-size:1.3rem; font-family: var(--ff-head); color: var(--text); }
+
+/* ---------- E5 : parcours, tableau de synthèse, mentions légales ---------- */
+.path-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; }
+.path-step{ background: var(--surface); border:1px solid var(--border); border-top:3px solid var(--accent); border-radius: var(--radius); padding:20px; }
+.path-step.now{ border-top-color: var(--warn); }
+.path-step .when{ font-family: var(--ff-mono); font-size:0.8rem; color: var(--accent); }
+.path-step.now .when{ color: var(--warn); }
+.path-step h4{ margin:8px 0 6px; font-size:1rem; }
+.path-step p{ color: var(--text-dim); font-size:0.9rem; }
+.pro-box{ margin-top:20px; background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); padding:22px 24px; color: var(--text-dim); }
+.pro-box b{ color: var(--text); }
+.pro-box p + p{ margin-top:10px; }
+table.synth-e5{ min-width: 880px; }
+table.synth-e5 th{ text-transform:none; letter-spacing:0; font-size:0.74rem; line-height:1.3; vertical-align:bottom; }
+table.synth-e5 th.c, table.synth-e5 td.c{ text-align:center; width:96px; }
+table.synth-e5 td.c .x{ display:inline-block; width:14px; height:14px; border-radius:50%; background: var(--accent); }
+table.synth-e5 tr.grp td{ background: var(--surface-2); color: var(--text); font-family: var(--ff-mono); font-size:0.78rem; }
+table.synth-e5 td a{ color: var(--text); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+table.synth-e5 td a:hover{ color: var(--accent); }
+table.synth-e5 td.per{ font-family: var(--ff-mono); font-size:0.8rem; white-space:nowrap; }
+.synth-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:20px; }
+.proofs a{ color: var(--accent); }
+.legal{ max-width: 760px; }
+.legal h2{ margin-top: 32px; font-size:1.2rem; }
+.legal p{ color: var(--text-dim); margin-top:8px; }
+.legal a{ color: var(--accent); }
+@media (max-width: 900px){ .path-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px){ .path-grid{ grid-template-columns: 1fr; } }
+.nav-links a{ white-space:nowrap; }
+@media (max-width: 1180px){ .nav-links{ gap:18px; } .nav-cta .btn-ghost{ display:none; } }
+@media (max-width: 860px){ .nav-links{ gap:14px; } .nav-links a{ font-size:0.85rem; } }
+.synth-actions .btn{ white-space:normal; max-width:100%; text-align:center; }
+@media (max-width: 760px){ .nav-links, .nav-cta .btn-ghost{ display:none; } .burger{ display:flex; } }
+.pro-box a{ color: var(--accent); }
+table.synth-e5{ min-width: 980px; table-layout: fixed; }
+table.synth-e5 th, table.synth-e5 td{ padding: 10px 8px; }
+table.synth-e5 th{ font-family: var(--ff-body); font-size: 0.72rem; }
+table.synth-e5 th:nth-child(2){ width: 104px; }
+table.synth-e5 th.c, table.synth-e5 td.c{ width: 96px; }
+table.synth-e5 td.per{ white-space: normal; }
+@media (max-width: 1400px){ .nav-cta .btn-ghost{ display:none; } }
+@media (max-width: 1280px){ .brand small{ display:none; } }

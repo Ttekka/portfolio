@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comptes Active Directory et gestion du parc pour le client TDF (Inetum) — Gwendal Riquier</title>
+<meta name="description" content="Réalisation professionnelle : gestion des comptes Active Directory, des habilitations et du parc informatique pour le client TDF, en alternance chez Inetum.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#skills">Compétences</a></li>
+      <li><a href="../index.html#projects" class="active">Projets</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#skills">Compétences</a>
+  <a href="../index.html#projects">Projets</a>
+  <a href="../index.html#contact">Contact</a>
+</div>
+
+<header class="case-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>Comptes AD et parc Inetum / TDF</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">RP 2</span>
+      <span class="tag">Active Directory</span>
+      <span class="tag">Habilitations</span>
+      <span class="tag">Parc informatique</span>
+    </div>
+    <h1>Comptes Active Directory et gestion du parc pour le client TDF (alternance Inetum)</h1>
+    <p class="summary">
+      En 2e année d'alternance chez <b>Inetum</b>, je traite pour le client <b>TDF</b> les demandes liées aux
+      <b>comptes utilisateurs</b> dans l'Active Directory et au <b>matériel</b> qui leur est attribué :
+      arrivées, départs, droits d'accès, mots de passe et inventaire du parc.
+    </p>
+    <div class="case-meta">
+      <div class="m"><b>En cours</b><span>Statut</span></div>
+      <div class="m"><b>01/09/26 au 17/11/26</b><span>Période (2e année)</span></div>
+      <div class="m"><b>Inetum (ESN) · client TDF</b><span>Environnement</span></div>
+      <div class="m"><b>Support N1</b><span>Rôle</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXTE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Contexte et besoin</h2>
+    <p>
+      Chaque arrivée, départ ou changement de poste chez le client crée une demande : un compte à créer
+      ou à désactiver, des droits à ajuster, un poste à attribuer ou à récupérer. Le besoin est double :
+      que chaque utilisateur ait <b>exactement les droits validés</b> pour son poste, et que
+      l'<b>inventaire du parc</b> reste juste.
+    </p>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2.6 17a1.5 1.5 0 0 0 1.3 2.3h16.2a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
+      <p>Par confidentialité, l'illustration ci-dessous est fictive (domaine entreprise.local) :
+      aucune donnée du client TDF n'est publiée.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEMARCHE -->
+<section class="case-section">
+  <div class="container">
+    <h2>Ma démarche</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div><h4>La demande arrive par ticket</h4><p>Je vérifie qu'elle est complète et validée par la bonne personne avant d'agir. Sans validation, je ne crée rien et je relance le demandeur.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div><h4>Création ou modification du compte</h4><p>Compte rangé dans la bonne unité d'organisation, ajout aux groupes de sécurité qui donnent les droits prévus, et rien de plus.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div><h4>Mots de passe et déverrouillages</h4><p>Réinitialisation seulement après vérification de l'identité de l'utilisateur, avec changement imposé à la prochaine connexion.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div><h4>Attribution et retrait du matériel</h4><p>Poste et périphériques attribués à l'arrivée, récupérés au départ, et inventaire du parc mis à jour à chaque mouvement.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">5</div>
+        <div><h4>Clôture du ticket</h4><p>Je vérifie avec l'utilisateur que l'accès fonctionne, puis je clôture le ticket en notant ce qui a été fait.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ILLUSTRATION -->
+<section class="case-section">
+  <div class="container">
+    <h2>Illustration anonymisée</h2>
+    <p>Exemple fictif d'une unité d'organisation après l'arrivée de deux utilisateurs du service RH.</p>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Objet (entreprise.local › Service RH)</th><th>Type</th><th>Rôle</th></tr></thead>
+        <tbody>
+          <tr><td>Marie Dupont</td><td>Utilisateur</td><td>Membre de GG_RH</td></tr>
+          <tr><td>Lucas Martin</td><td>Utilisateur</td><td>Membre de GG_RH</td></tr>
+          <tr><td>GG_RH</td><td>Groupe de sécurité</td><td>Donne l'accès aux ressources RH</td></tr>
+          <tr><td>PC-RH-014</td><td>Ordinateur</td><td>Attribué, inscrit à l'inventaire</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="case-section">
+  <div class="container">
+    <h2>Compétences mobilisées (référentiel BTS SIO — bloc 1)</h2>
+    <div class="table-wrap">
+      <table class="k">
+        <thead><tr><th>Compétence</th><th>Mise en œuvre</th></tr></thead>
+        <tbody>
+          <tr><td>Gérer le patrimoine informatique</td><td>Mettre en place et vérifier les niveaux d'habilitation (groupes de sécurité) ; recenser les ressources (inventaire du parc à jour)</td></tr>
+          <tr><td>Répondre aux incidents et aux demandes d'assistance et d'évolution</td><td>Chaque création, modification ou réinitialisation part d'une demande enregistrée, suivie et clôturée dans l'outil de tickets</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- PREUVES -->
+<section class="case-section proofs">
+  <div class="container">
+    <h2>Productions et preuves</h2>
+    <ul class="bullets">
+      <li>Illustration anonymisée de la console Active Directory (ci-dessus).</li>
+      <li>Les tickets et l'inventaire réels du client ne sont pas publiés (confidentialité) : présentés à l'oral sur demande, sans donnée personnelle.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="container case-cta">
+  <div>
+    <h2 style="font-size:1.3rem;margin-bottom:8px;">Envie d'en discuter ?</h2>
+    <p style="color:var(--text-dim);">D'autres projets et missions viendront compléter ce portfolio au fil de l'alternance.</p>
+  </div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR.</p>
+    <div class="foot-links">
+      <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:riquiergwendal@gmail.com">Email</a>
+      <a href="../mentions-legales.html">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
