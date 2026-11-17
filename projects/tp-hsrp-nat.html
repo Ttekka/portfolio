@@ -4,46 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TP Routage inter-VLAN, HSRP et NAT — Gwendal Riquier</title>
+<meta name="theme-color" content="#ffffff">
 <meta name="description" content="TP BTS SIO SISR : routage inter-VLAN router-on-a-stick, haute disponibilité HSRP et NAT overload sur deux routeurs Cisco 2800.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <nav class="navbar scrolled" id="navbar">
   <div class="container">
-    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <a href="../index.html" class="brand">Gwendal Riquier<small>BTS SIO SISR</small></a>
     <ul class="nav-links">
-      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#projects">Réalisations</a></li>
+      <li><a href="../index.html#synthese">Synthèse</a></li>
+      <li><a href="../index.html#parcours">Parcours</a></li>
       <li><a href="../index.html#skills">Compétences</a></li>
-      <li><a href="../index.html#projects" class="active">Projets</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-        GitHub
-      </a>
-      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+      <a href="../docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg> Tableau de synthèse</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#projects">Réalisations</a>
+  <a href="../index.html#synthese">Synthèse</a>
+  <a href="../index.html#parcours">Parcours</a>
   <a href="../index.html#skills">Compétences</a>
-  <a href="../index.html#projects">Projets</a>
   <a href="../index.html#contact">Contact</a>
 </div>
 
 <header class="case-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP HSRP et NAT</span>
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Réalisations</a> <span>/</span> <span>TP HSRP et NAT</span>
     </div>
+    <h1>Routage inter-VLAN, haute disponibilité HSRP et NAT</h1>
+    <p class="summary">
+      Deux routeurs <b>Cisco 2800</b> assurent le <b>routage inter-VLAN</b> (router-on-a-stick), la <b>haute disponibilité</b> de la passerelle avec <b>HSRP</b>, et l'accès à Internet par <b>NAT overload</b>.
+    </p>
     <div class="case-tags">
       <span class="tag">RP 6</span>
       <span class="tag">Cisco</span>
@@ -51,15 +54,11 @@
       <span class="tag">NAT</span>
       <span class="tag">Routage</span>
     </div>
-    <h1>Routage inter-VLAN, haute disponibilité HSRP et NAT</h1>
-    <p class="summary">
-      Deux routeurs <b>Cisco 2800</b> assurent le <b>routage inter-VLAN</b> (router-on-a-stick), la <b>haute disponibilité</b> de la passerelle avec <b>HSRP</b>, et l'accès à Internet par <b>NAT overload</b>.
-    </p>
     <div class="case-meta">
-      <div class="m"><b>Réalisé</b><span>Statut</span></div>
-      <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
-      <div class="m"><b>Cisco 2800 Series</b><span>Environnement</span></div>
-      <div class="m"><b>bristendal.local</b><span>Domaine</span></div>
+      <div class="m"><span>Statut</span><b>Réalisé</b></div>
+      <div class="m"><span>Cadre</span><b>BTS SIO · ESUP</b></div>
+      <div class="m"><span>Environnement</span><b>Cisco 2800 Series</b></div>
+      <div class="m"><span>Domaine</span><b>bristendal.local</b></div>
     </div>
   </div>
 </header>
@@ -125,12 +124,12 @@
   <div class="container">
     <h2>Mise en œuvre</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div><h4>Sous-interfaces</h4><p>Sur R1 et R2, une sous-interface 802.1Q par VLAN sur Fa0/1 (.10, .20, .30), marquées <code>ip nat inside</code>.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h4>HSRP</h4><p>Une adresse virtuelle par réseau, utilisée comme passerelle par les machines. R1 priorité 110, R2 priorité 100, preempt sur les deux.</p></div></div>
-      <div class="step"><div class="num">3</div><div><h4>NAT et routes</h4><p>NAT overload sur Fa0/0 (<code>ip nat outside</code>), ACL 1 des réseaux internes, route par défaut vers 192.168.3.1, route vers la DMZ via 192.168.30.3.</p></div></div>
-      <div class="step"><div class="num">4</div><div><h4>Dépannage</h4><p>La route et l'ACL visaient d'abord 172.16.42.0/28, qui ne couvre que .0 à .15 : les serveurs en .252 et .253 étaient injoignables. Corrigé le 03/11/2026 en 172.16.42.240/28.</p></div></div>
-      <div class="step"><div class="num">5</div><div><h4>Tests</h4><p><code>show standby brief</code> (R1 Active, R2 Standby), <code>ping -t 192.168.10.254</code> en débranchant R1 puis en le rebranchant (preempt), <code>show ip nat translations</code>.</p></div></div>
-      <div class="step"><div class="num">6</div><div><h4>Améliorations identifiées</h4><p>Suivi de l'interface externe (<code>standby track</code>), authentification HSRP md5, filtrage entre VLAN par ACL.</p></div></div>
+      <div class="step"><div class="num">1</div><div><h3>Sous-interfaces</h3><p>Sur R1 et R2, une sous-interface 802.1Q par VLAN sur Fa0/1 (.10, .20, .30), marquées <code>ip nat inside</code>.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>HSRP</h3><p>Une adresse virtuelle par réseau, utilisée comme passerelle par les machines. R1 priorité 110, R2 priorité 100, preempt sur les deux.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>NAT et routes</h3><p>NAT overload sur Fa0/0 (<code>ip nat outside</code>), ACL 1 des réseaux internes, route par défaut vers 192.168.3.1, route vers la DMZ via 192.168.30.3.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>Dépannage</h3><p>La route et l'ACL visaient d'abord 172.16.42.0/28, qui ne couvre que .0 à .15 : les serveurs en .252 et .253 étaient injoignables. Corrigé le 03/11/2026 en 172.16.42.240/28.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h3>Tests</h3><p><code>show standby brief</code> (R1 Active, R2 Standby), <code>ping -t 192.168.10.254</code> en débranchant R1 puis en le rebranchant (preempt), <code>show ip nat translations</code>.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h3>Améliorations identifiées</h3><p>Suivi de l'interface externe (<code>standby track</code>), authentification HSRP md5, filtrage entre VLAN par ACL.</p></div></div>
     </div>
   </div>
 </section>
@@ -170,10 +169,15 @@
     <p style="color:var(--text-dim);">D'autres TP et projets viendront compléter ce portfolio au fil de la formation.</p>
   </div>
   <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#projects" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Toutes les réalisations</a>
     <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
   </div>
 </div>
+
+<nav class="container rp-pager" aria-label="Réalisation précédente et suivante">
+  <a class="prev" href="tp-vlan.html"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Précédent · RP 5</span><b>VLAN et Rapid-PVST</b></a>
+  <a class="next" href="tp-dmz-opnsense.html"><span>RP 7 · Suivant <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span><b>DMZ et intranet OPNsense</b></a>
+</nav>
 
 <footer>
   <div class="container">

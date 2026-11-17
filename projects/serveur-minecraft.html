@@ -4,51 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Serveur Minecraft sous Debian — Gwendal Riquier</title>
+<meta name="theme-color" content="#ffffff">
 <meta name="description" content="Étude de cas : hébergement d'un serveur Minecraft Java sur Debian, accès Internet via playit.gg, sécurité et administration systemd.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <nav class="navbar scrolled" id="navbar">
   <div class="container">
-    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <a href="../index.html" class="brand">Gwendal Riquier<small>BTS SIO SISR</small></a>
     <ul class="nav-links">
-      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#projects">Réalisations</a></li>
+      <li><a href="../index.html#synthese">Synthèse</a></li>
+      <li><a href="../index.html#parcours">Parcours</a></li>
       <li><a href="../index.html#skills">Compétences</a></li>
-      <li><a href="../index.html#projects" class="active">Projets</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-        GitHub
-      </a>
-      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+      <a href="../docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg> Tableau de synthèse</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#projects">Réalisations</a>
+  <a href="../index.html#synthese">Synthèse</a>
+  <a href="../index.html#parcours">Parcours</a>
   <a href="../index.html#skills">Compétences</a>
-  <a href="../index.html#projects">Projets</a>
   <a href="../index.html#contact">Contact</a>
 </div>
 
 <header class="case-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>Serveur Minecraft</span>
-    </div>
-    <div class="case-tags">
-      <span class="tag">Linux · Debian</span>
-      <span class="tag">Réseau</span>
-      <span class="tag">systemd</span>
-      <span class="tag">Sécurité</span>
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Réalisations</a> <span>/</span> <span>Serveur Minecraft</span>
     </div>
     <h1>Héberger un serveur Minecraft Java sur Debian, accessible depuis Internet</h1>
     <p class="summary">
@@ -56,11 +49,17 @@
       rendu accessible à des amis depuis Internet grâce à un tunnel <b>playit.gg</b> — sans toucher à la box
       ni exposer d'IP publique — puis administré en arrière-plan via <b>systemd</b>.
     </p>
+    <div class="case-tags">
+      <span class="tag">Linux · Debian</span>
+      <span class="tag">Réseau</span>
+      <span class="tag">systemd</span>
+      <span class="tag">Sécurité</span>
+    </div>
     <div class="case-meta">
-      <div class="m"><b>Fonctionnel</b><span>Statut</span></div>
-      <div class="m"><b>Octobre 2026</b><span>Période</span></div>
-      <div class="m"><b>Debian · OpenJDK 25</b><span>Environnement</span></div>
-      <div class="m"><b>Whitelist entre amis</b><span>Accès</span></div>
+      <div class="m"><span>Statut</span><b>Fonctionnel</b></div>
+      <div class="m"><span>Période</span><b>Octobre 2026</b></div>
+      <div class="m"><span>Environnement</span><b>Debian · OpenJDK 25</b></div>
+      <div class="m"><span>Accès</span><b>Whitelist entre amis</b></div>
     </div>
   </div>
 </header>
@@ -165,35 +164,35 @@
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
-        <div><h4>Préparation du système</h4><p>Attribution des droits <code>sudo</code> à l'utilisateur, vérification avec <code>whoami</code> pour éviter de travailler par erreur sous le compte root.</p></div>
+        <div><h3>Préparation du système</h3><p>Attribution des droits <code>sudo</code> à l'utilisateur, vérification avec <code>whoami</code> pour éviter de travailler par erreur sous le compte root.</p></div>
       </div>
       <div class="step">
         <div class="num">2</div>
-        <div><h4>Installation du runtime Java</h4><p>Installation d'OpenJDK (headless, sans interface graphique) via <code>apt</code>, avec ajout d'un dépôt tiers signé (Adoptium/Temurin) comme solution de repli.</p></div>
+        <div><h3>Installation du runtime Java</h3><p>Installation d'OpenJDK (headless, sans interface graphique) via <code>apt</code>, avec ajout d'un dépôt tiers signé (Adoptium/Temurin) comme solution de repli.</p></div>
       </div>
       <div class="step">
         <div class="num">3</div>
-        <div><h4>Déploiement du serveur</h4><p>Téléchargement du <code>.jar</code> Paper, acceptation de l'EULA, premier lancement et vérification du message <code>Done</code>.</p></div>
+        <div><h3>Déploiement du serveur</h3><p>Téléchargement du <code>.jar</code> Paper, acceptation de l'EULA, premier lancement et vérification du message <code>Done</code>.</p></div>
       </div>
       <div class="step">
         <div class="num">4</div>
-        <div><h4>Configuration &amp; mémoire</h4><p>Paramétrage de <code>server.properties</code> (whitelist, mode de jeu, distance de rendu) et allocation de la RAM via les options JVM <code>-Xms</code> / <code>-Xmx</code>, ajustée au laptop.</p></div>
+        <div><h3>Configuration &amp; mémoire</h3><p>Paramétrage de <code>server.properties</code> (whitelist, mode de jeu, distance de rendu) et allocation de la RAM via les options JVM <code>-Xms</code> / <code>-Xmx</code>, ajustée au laptop.</p></div>
       </div>
       <div class="step">
         <div class="num">5</div>
-        <div><h4>Administration des joueurs</h4><p>Gestion de la whitelist et des droits admin (<code>op</code>/<code>deop</code>) directement depuis la console ou en jeu.</p></div>
+        <div><h3>Administration des joueurs</h3><p>Gestion de la whitelist et des droits admin (<code>op</code>/<code>deop</code>) directement depuis la console ou en jeu.</p></div>
       </div>
       <div class="step">
         <div class="num">6</div>
-        <div><h4>Exécution en arrière-plan</h4><p>Lancement via <code>screen</code> pour un usage ponctuel, puis création d'une unité <code>systemd</code> pour un démarrage automatique et un redémarrage en cas de panne (<code>Restart=on-failure</code>).</p></div>
+        <div><h3>Exécution en arrière-plan</h3><p>Lancement via <code>screen</code> pour un usage ponctuel, puis création d'une unité <code>systemd</code> pour un démarrage automatique et un redémarrage en cas de panne (<code>Restart=on-failure</code>).</p></div>
       </div>
       <div class="step">
         <div class="num">7</div>
-        <div><h4>Accès depuis Internet</h4><p>Installation de l'agent <code>playit.gg</code>, création d'un tunnel « Minecraft Java » pointant sur le port local <code>25565</code>, génération d'une adresse publique dédiée.</p></div>
+        <div><h3>Accès depuis Internet</h3><p>Installation de l'agent <code>playit.gg</code>, création d'un tunnel « Minecraft Java » pointant sur le port local <code>25565</code>, génération d'une adresse publique dédiée.</p></div>
       </div>
       <div class="step">
         <div class="num">8</div>
-        <div><h4>Sauvegardes</h4><p>Archivage du dossier <code>world</code> avec <code>tar</code> avant chaque mise à jour de Minecraft ou de Java, pour pouvoir restaurer en cas de problème.</p></div>
+        <div><h3>Sauvegardes</h3><p>Archivage du dossier <code>world</code> avec <code>tar</code> avant chaque mise à jour de Minecraft ou de Java, pour pouvoir restaurer en cas de problème.</p></div>
       </div>
     </div>
   </div>
@@ -261,7 +260,7 @@
     <p style="color:var(--text-dim);">D'autres projets d'infrastructure arrivent prochainement sur ce portfolio.</p>
   </div>
   <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#projects" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Toutes les réalisations</a>
     <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
   </div>
 </div>

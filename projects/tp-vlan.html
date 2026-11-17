@@ -4,46 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TP VLAN et Rapid-PVST — Gwendal Riquier</title>
+<meta name="theme-color" content="#ffffff">
 <meta name="description" content="TP BTS SIO SISR : VLAN, trunks 802.1Q et Rapid-PVST sur trois commutateurs Catalyst 2960 en triangle.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <nav class="navbar scrolled" id="navbar">
   <div class="container">
-    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <a href="../index.html" class="brand">Gwendal Riquier<small>BTS SIO SISR</small></a>
     <ul class="nav-links">
-      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#projects">Réalisations</a></li>
+      <li><a href="../index.html#synthese">Synthèse</a></li>
+      <li><a href="../index.html#parcours">Parcours</a></li>
       <li><a href="../index.html#skills">Compétences</a></li>
-      <li><a href="../index.html#projects" class="active">Projets</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-        GitHub
-      </a>
-      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+      <a href="../docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg> Tableau de synthèse</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#projects">Réalisations</a>
+  <a href="../index.html#synthese">Synthèse</a>
+  <a href="../index.html#parcours">Parcours</a>
   <a href="../index.html#skills">Compétences</a>
-  <a href="../index.html#projects">Projets</a>
   <a href="../index.html#contact">Contact</a>
 </div>
 
 <header class="case-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP VLAN et Rapid-PVST</span>
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Réalisations</a> <span>/</span> <span>TP VLAN et Rapid-PVST</span>
     </div>
+    <h1>VLAN et Rapid-PVST sur trois commutateurs en triangle</h1>
+    <p class="summary">
+      Configuration des trois <b>Catalyst 2960</b> de la maquette Bristendal : un <b>VLAN par usage</b>, des <b>trunks 802.1Q</b> entre les switchs et vers les routeurs, et <b>Rapid-PVST</b> pour garder un câblage redondant en triangle sans boucle.
+    </p>
     <div class="case-tags">
       <span class="tag">RP 5</span>
       <span class="tag">Cisco</span>
@@ -51,15 +54,11 @@
       <span class="tag">802.1Q</span>
       <span class="tag">Rapid-PVST</span>
     </div>
-    <h1>VLAN et Rapid-PVST sur trois commutateurs en triangle</h1>
-    <p class="summary">
-      Configuration des trois <b>Catalyst 2960</b> de la maquette Bristendal : un <b>VLAN par usage</b>, des <b>trunks 802.1Q</b> entre les switchs et vers les routeurs, et <b>Rapid-PVST</b> pour garder un câblage redondant en triangle sans boucle.
-    </p>
     <div class="case-meta">
-      <div class="m"><b>Réalisé</b><span>Statut</span></div>
-      <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
-      <div class="m"><b>Cisco Catalyst 2960</b><span>Environnement</span></div>
-      <div class="m"><b>bristendal.local</b><span>Domaine</span></div>
+      <div class="m"><span>Statut</span><b>Réalisé</b></div>
+      <div class="m"><span>Cadre</span><b>BTS SIO · ESUP</b></div>
+      <div class="m"><span>Environnement</span><b>Cisco Catalyst 2960</b></div>
+      <div class="m"><span>Domaine</span><b>bristendal.local</b></div>
     </div>
   </div>
 </header>
@@ -123,12 +122,12 @@
   <div class="container">
     <h2>Mise en œuvre</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div><h4>VLAN et ports d'accès</h4><p>Création des VLAN 10, 20, 30 et 99, affectation des plages de ports identiques sur SW1, SW2 et SW3.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h4>Trunks 802.1Q</h4><p>Ports Fa0/45 à Fa0/48 en trunk : liaisons entre switchs et vers R1 (SW1 Fa0/47) et R2 (SW3 Fa0/48).</p></div></div>
-      <div class="step"><div class="num">3</div><div><h4>Rapid-PVST</h4><p>Une instance de spanning-tree par VLAN, convergence rapide. Le root bridge est élu automatiquement (plus petit identifiant).</p></div></div>
-      <div class="step"><div class="num">4</div><div><h4>Vérifications</h4><p><code>show vlan brief</code>, <code>show interfaces trunk</code>, <code>show spanning-tree</code> (un port Alternate ou Blocking dans le triangle).</p></div></div>
-      <div class="step"><div class="num">5</div><div><h4>Test de panne</h4><p>Débrancher le lien SW1 Fa0/45 pendant un ping continu : le trafic reprend par l'autre chemin.</p></div></div>
-      <div class="step"><div class="num">6</div><div><h4>Améliorations identifiées</h4><p>Fixer le root bridge (priorité 4096), éteindre les ports du VLAN 99, limiter les VLAN autorisés sur les trunks avec un VLAN natif dédié, ajouter un VLAN de management en SSH.</p></div></div>
+      <div class="step"><div class="num">1</div><div><h3>VLAN et ports d'accès</h3><p>Création des VLAN 10, 20, 30 et 99, affectation des plages de ports identiques sur SW1, SW2 et SW3.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Trunks 802.1Q</h3><p>Ports Fa0/45 à Fa0/48 en trunk : liaisons entre switchs et vers R1 (SW1 Fa0/47) et R2 (SW3 Fa0/48).</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>Rapid-PVST</h3><p>Une instance de spanning-tree par VLAN, convergence rapide. Le root bridge est élu automatiquement (plus petit identifiant).</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>Vérifications</h3><p><code>show vlan brief</code>, <code>show interfaces trunk</code>, <code>show spanning-tree</code> (un port Alternate ou Blocking dans le triangle).</p></div></div>
+      <div class="step"><div class="num">5</div><div><h3>Test de panne</h3><p>Débrancher le lien SW1 Fa0/45 pendant un ping continu : le trafic reprend par l'autre chemin.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h3>Améliorations identifiées</h3><p>Fixer le root bridge (priorité 4096), éteindre les ports du VLAN 99, limiter les VLAN autorisés sur les trunks avec un VLAN natif dédié, ajouter un VLAN de management en SSH.</p></div></div>
     </div>
   </div>
 </section>
@@ -168,10 +167,15 @@
     <p style="color:var(--text-dim);">D'autres TP et projets viendront compléter ce portfolio au fil de la formation.</p>
   </div>
   <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#projects" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Toutes les réalisations</a>
     <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
   </div>
 </div>
+
+<nav class="container rp-pager" aria-label="Réalisation précédente et suivante">
+  <a class="prev" href="tp-active-directory.html"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Précédent · RP 4</span><b>AD, DNS et GPO</b></a>
+  <a class="next" href="tp-hsrp-nat.html"><span>RP 6 · Suivant <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span><b>Routage, HSRP et NAT</b></a>
+</nav>
 
 <footer>
   <div class="container">

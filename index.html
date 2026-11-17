@@ -3,467 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gwendal Riquier — Portfolio BTS SIO</title>
-<meta name="description" content="Portfolio de Gwendal Riquier, étudiant en BTS SIO option SISR. Projets d'administration systèmes, réseaux et infrastructure.">
+<title>Gwendal Riquier · Portfolio BTS SIO SISR</title>
+<meta name="description" content="Portfolio de Gwendal Riquier, BTS SIO option SISR (session 2027), en alternance chez Inetum : sept réalisations professionnelles, tableau de synthèse E5, parcours et veille.">
+<meta name="author" content="Gwendal Riquier">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://ttekka.github.io/portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gwendal Riquier · Portfolio BTS SIO SISR">
+<meta property="og:description" content="Sept réalisations professionnelles, tableau de synthèse E5, parcours et veille.">
+<meta property="og:url" content="https://ttekka.github.io/portfolio/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip" href="#projects">Aller aux réalisations</a>
 
-<nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar" aria-label="Navigation principale">
   <div class="container">
-    <a href="#top" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <a href="#top" class="brand">Gwendal Riquier<small>BTS SIO SISR</small></a>
     <ul class="nav-links">
-      <li><a href="#about" class="nav-link">À propos</a></li>
+      <li><a href="#projects" class="nav-link">Réalisations</a></li>
+      <li><a href="#synthese" class="nav-link">Synthèse</a></li>
       <li><a href="#parcours" class="nav-link">Parcours</a></li>
       <li><a href="#skills" class="nav-link">Compétences</a></li>
-      <li><a href="#projects" class="nav-link">Projets</a></li>
-      <li><a href="#synthese" class="nav-link">Synthèse</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-        GitHub
+      <a href="docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+        Tableau de synthèse
       </a>
-      <a href="#contact" class="btn btn-primary">Me contacter</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" class="nav-link">À propos</a>
-  <a href="#parcours" class="nav-link">Parcours</a>
-  <a href="#skills" class="nav-link">Compétences</a>
-  <a href="#projects" class="nav-link">Projets</a>
-  <a href="#synthese" class="nav-link">Synthèse</a>
-  <a href="#contact" class="nav-link">Contact</a>
+  <a href="#projects">Réalisations</a>
+  <a href="#synthese">Tableau de synthèse</a>
+  <a href="#parcours">Parcours</a>
+  <a href="#skills">Compétences</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <main id="top">
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="hero-kicker"><span class="pulse"></span> Disponible pour alternance / stage</div>
-        <h1>
-          <span>Gwendal Riquier</span>
-          <span class="text-gradient">BTS SIO — option SISR</span>
-        </h1>
-        <p class="lead">
-          Passionné d'informatique depuis le collège, j'ai décidé d'en faire mon avenir.
-          Je me forme à l'administration des systèmes, des réseaux et des infrastructures —
-          et je documente chaque projet comme un vrai cas d'usage professionnel.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">
-            Voir mes projets
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="#contact" class="btn btn-ghost">Me contacter</a>
-        </div>
-        <div class="hero-socials">
-          <a class="icon-btn" href="https://github.com/Ttekka" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-          </a>
-          <a class="icon-btn" href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-          </a>
-          <a class="icon-btn" href="mailto:riquiergwendal@gmail.com" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18v12H3V6Zm0 0 9 7 9-7"/></svg>
-          </a>
-        </div>
+  <header class="hero" id="about">
+    <div class="container">
+      <h1>Étudiant en BTS SIO SISR, orienté infrastructure.</h1>
+      <p class="lead">Je m’appelle Gwendal Riquier, je me forme à l’administration des systèmes et des réseaux en alternance chez Inetum. Ce portfolio rassemble mes réalisations professionnelles pour l’épreuve E5, avec leurs preuves.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-blue">Voir les réalisations
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m0 0-5-5m5 5 5-5"/></svg>
+        </a>
+        <a href="docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-ghost" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+          Tableau de synthèse (.xlsx)
+        </a>
       </div>
-
-      <div class="terminal reveal">
-        <div class="terminal-bar"><span></span><span></span><span></span><b>gwendal@debian: ~/minecraft-server</b></div>
-        <div class="terminal-body" id="termBody"></div>
-      </div>
+      <ul class="facts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>BTS SIO option SISR · session 2027</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Centre de formation : ESUP</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Alternance Inetum, client TDF</li>
+      </ul>
     </div>
   </header>
 
-  <!-- ABOUT -->
-  <section class="section" id="about">
+  <section class="section alt" id="projects" aria-labelledby="projects-title">
     <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <div class="eyebrow">À propos</div>
-          <h2>Étudiant en informatique, orienté infrastructure</h2>
-        </div>
-        <div class="about-text reveal">
-          <p>
-            Je m'appelle <b>Gwendal Riquier</b>, actuellement en 2ᵉ année de <b>BTS SIO</b>, option
-            <b>SISR</b> (Solutions d'Infrastructure, Systèmes et Réseaux). L'informatique me passionne
-            depuis le collège : c'est en bricolant mes propres machines et services que j'ai compris
-            que c'était le domaine dans lequel je voulais construire mon avenir.
-          </p>
-          <p>
-            Côté SISR, je me forme à l'administration des systèmes Linux et Windows, à la mise en
-            réseau, à la sécurité et à la supervision de services. J'aime comprendre comment les
-            choses fonctionnent « sous le capot » et documenter mes projets comme de vraies études
-            de cas, pour progresser et garder une trace propre de ce que j'apprends.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><b>2ᵉ</b><span>année de BTS SIO</span></div>
-            <div class="stat"><b>SISR</b><span>Option infrastructure</span></div>
-            <div class="stat"><b>Linux</b><span>Terrain de jeu favori</span></div>
-          </div>
+      <div class="section-head">
+        <div>
+          <h2 id="projects-title">Réalisations professionnelles</h2>
+          <p>Sept réalisations et ma veille. Chaque page détaille le contexte, ce que j’ai fait, les preuves et les compétences du bloc 1.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- PARCOURS -->
-  <section class="section" id="parcours" style="padding-top:0;">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Parcours</div>
-        <h2>Mon parcours de professionnalisation</h2>
-        <p>De la découverte de l'informatique au lycée à l'alternance en ESN.</p>
-      </div>
-      <div class="path-grid reveal">
-        <div class="path-step">
-          <div class="when">2025</div>
-          <h4>Bac général</h4>
-          <p>Spécialités NSI et HGGSP.</p>
-        </div>
-        <div class="path-step">
-          <div class="when">2025 – 2026</div>
-          <h4>BTS SIO, 1re année en alternance</h4>
-          <p>ESUP, en alternance chez Inetum (ESN). Choix de l'option SISR.</p>
-        </div>
-        <div class="path-step now">
-          <div class="when">2026 – 2027 · en cours</div>
-          <h4>BTS SIO SISR, 2e année en alternance</h4>
-          <p>Inetum, pour le client TDF : support N1, tickets, comptes Active Directory, parc informatique.</p>
-        </div>
-        <div class="path-step">
-          <div class="when">Après le BTS</div>
-          <h4>Licence professionnelle (Bac+3)</h4>
-          <p>Spécialisée en réseaux, télécoms ou cybersécurité.</p>
-        </div>
-      </div>
-      <div class="pro-box reveal">
-        <p><b>Projet professionnel.</b> Poursuivre en licence professionnelle (Bac+3) spécialisée en réseaux,
-        télécoms ou cybersécurité, pour évoluer vers l'administration des systèmes et des réseaux.</p>
-        <p><b>Environnement d'apprentissage.</b> Mes cours et TP à l'ESUP, l'alternance chez Inetum, mon
-        <a href="projects/serveur-minecraft.html">serveur Debian personnel</a> qui me sert de laboratoire,
-        et ma <a href="projects/veille-ransomwares.html">veille</a> (Feedly, CERT-FR, ANSSI).
-        Profil professionnel : <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section" id="skills" style="padding-top:0;">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Compétences</div>
-        <h2>Domaines travaillés en BTS SIO — SISR</h2>
-        <p>Les quatre piliers de mon option, illustrés par ce que je mets en pratique dans mes projets.</p>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
-          <h4>Administration systèmes</h4>
-          <p>Installation et configuration de systèmes Linux (Debian), gestion des utilisateurs, des droits et des services.</p>
-        </div>
-        <div class="skill-card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
-          <h4>Réseaux &amp; connectivité</h4>
-          <p>Ports TCP/IP, NAT, tunnels d'accès distant (playit.gg), diagnostic réseau local / Internet.</p>
-        </div>
-        <div class="skill-card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4Z"/></svg></div>
-          <h4>Sécurité</h4>
-          <p>Whitelists, niveaux de permissions, dépôts de paquets signés (GPG), réduction de la surface d'exposition.</p>
-        </div>
-        <div class="skill-card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l4-10 4 10M6.5 12h3M14 7h6M14 12h6M14 17h6"/></svg></div>
-          <h4>Services &amp; automatisation</h4>
-          <p>Déploiement de services applicatifs, scripts shell, unités <code>systemd</code>, sauvegardes planifiées.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Projets</div>
-        <h2>Études de cas</h2>
-        <p>Chaque projet est documenté comme en entreprise : contexte, mise en œuvre, sécurité et compétences mobilisées.</p>
-      </div>
-
-      <div class="projects-grid">
-
-        <!-- Project 1 : Minecraft server -->
-        <a href="projects/serveur-minecraft.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> Fonctionnel</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><circle cx="6" cy="6.5" r="1" fill="currentColor"/><circle cx="6" cy="17.5" r="1" fill="currentColor"/></svg>
-          </div>
-          <h3>Serveur Minecraft sous Debian</h3>
-          <p class="desc">
-            Hébergement d'un serveur Minecraft Java (Paper) sur Linux, accessible depuis Internet via
-            un tunnel playit.gg, sécurisé par whitelist et administré en service systemd.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Debian</span>
-            <span class="tag">systemd</span>
-            <span class="tag">Réseau</span>
-            <span class="tag">Sécurité</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+      <div class="rp-grid">
+        <a href="projects/support-inetum-tdf.html" class="rp-card cat-alt">
+          <div class="rp-top"><span class="rp-num">RP 1</span><span class="rp-where">Alternance Inetum</span></div>
+          <h3>Support utilisateurs N1 pour le client TDF</h3>
+          <p>Support N1 pour le compte du client TDF : appels, tickets, résolution à distance et escalade au N2.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-inc">Incidents et demandes</li><li class="c-serv">Service</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- Project 2 : Support Inetum / TDF -->
-        <a href="projects/support-inetum-tdf.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> En cours</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19v1a2 2 0 0 1-2 2h-3"/></svg>
-          </div>
-          <h3>Support utilisateurs N1 — Inetum / TDF</h3>
-          <p class="desc">
-            Alternance en ESN chez Inetum, support N1 pour le compte du client TDF : appels, tickets,
-            résolution à distance et escalade au N2.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 1</span>
-            <span class="tag">Helpdesk</span>
-            <span class="tag">Ticketing</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+        <a href="projects/comptes-ad-parc-tdf.html" class="rp-card cat-alt">
+          <div class="rp-top"><span class="rp-num">RP 2</span><span class="rp-where">Alternance Inetum</span></div>
+          <h3>Comptes Active Directory et gestion du parc</h3>
+          <p>Comptes, habilitations et matériel des utilisateurs du client TDF : arrivées, départs, mots de passe et inventaire.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-pat">Patrimoine</li><li class="c-inc">Incidents et demandes</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- Project 2b : Comptes AD et parc -->
-        <a href="projects/comptes-ad-parc-tdf.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> En cours</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg>
-          </div>
-          <h3>Comptes AD et parc — Inetum / TDF</h3>
-          <p class="desc">
-            Comptes Active Directory, habilitations et matériel des utilisateurs du client TDF :
-            arrivées, départs, mots de passe et inventaire du parc.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 2</span>
-            <span class="tag">Active Directory</span>
-            <span class="tag">Parc</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+        <a href="projects/changement-cpu-gpu.html" class="rp-card cat-proj">
+          <div class="rp-top"><span class="rp-num">RP 3</span><span class="rp-where">Projet à trois</span></div>
+          <h3>Remplacement du processeur et de la carte graphique</h3>
+          <p>Passage à un Ryzen 7 5700X et une RTX 5070, de l’étude de compatibilité au montage et aux tests de stabilité.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-proj">Mode projet</li><li class="c-pat">Patrimoine</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- Project 3 : CPU / GPU -->
-        <a href="projects/changement-cpu-gpu.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> Terminé</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="0.8"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>
-          </div>
-          <h3>Remplacement CPU et GPU</h3>
-          <p class="desc">
-            Projet en équipe de trois : passage à un Ryzen 7 5700X et une RTX 5070, de l'étude de
-            compatibilité au montage et aux tests de stabilité et de températures.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 3</span>
-            <span class="tag">Matériel</span>
-            <span class="tag">Mode projet</span>
-            <span class="tag">Tests</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+        <a href="projects/tp-active-directory.html" class="rp-card cat-tp">
+          <div class="rp-top"><span class="rp-num">RP 4</span><span class="rp-where">TP Bristendal</span></div>
+          <h3>Active Directory, DNS et stratégies de groupe</h3>
+          <p>Domaine bristendal.local sous Windows Server 2022 : annuaire, zone DNS de l’intranet, GPO de mot de passe et de fond d’écran.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-pat">Patrimoine</li><li class="c-serv">Service</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- TP : Active Directory -->
-        <a href="projects/tp-active-directory.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> TP réalisé</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 10v3M12 13l-5 2M12 13l5 2"/></svg>
-          </div>
-          <h3>Active Directory, DNS et GPO</h3>
-          <p class="desc">
-            Domaine bristendal.local sur Windows Server 2022 : annuaire, zone DNS de l'intranet,
-            politique de mot de passe du domaine et GPO de fond d'écran.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 4</span>
-            <span class="tag">Windows Server</span>
-            <span class="tag">AD</span>
-            <span class="tag">GPO</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+        <a href="projects/tp-vlan.html" class="rp-card cat-tp">
+          <div class="rp-top"><span class="rp-num">RP 5</span><span class="rp-where">TP Bristendal</span></div>
+          <h3>VLAN et Rapid-PVST sur trois commutateurs</h3>
+          <p>Trois Catalyst 2960 en triangle : un VLAN par usage, VLAN parking, trunks 802.1Q et Rapid-PVST contre les boucles.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-pat">Patrimoine</li><li class="c-serv">Service</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- TP : VLAN -->
-        <a href="projects/tp-vlan.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> TP réalisé</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="6" rx="1.5"/><path d="M7 7h.01M11 7h.01M15 7h.01M6 10v4M12 10v4M18 10v4"/><rect x="3" y="14" width="6" height="5" rx="1"/><rect x="9" y="14" width="6" height="5" rx="1"/><rect x="15" y="14" width="6" height="5" rx="1"/></svg>
-          </div>
-          <h3>VLAN et Rapid-PVST</h3>
-          <p class="desc">
-            Trois Catalyst 2960 en triangle : un VLAN par usage, VLAN parking, trunks 802.1Q et
-            Rapid-PVST contre les boucles.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 5</span>
-            <span class="tag">Cisco</span>
-            <span class="tag">VLAN</span>
-            <span class="tag">Spanning-tree</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </a>
-
-        <!-- TP : HSRP / NAT -->
-        <a href="projects/tp-hsrp-nat.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> TP réalisé</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v5M15 9v5M9 14v6"/></svg>
-          </div>
+        <a href="projects/tp-hsrp-nat.html" class="rp-card cat-tp">
+          <div class="rp-top"><span class="rp-num">RP 6</span><span class="rp-where">TP Bristendal</span></div>
           <h3>Routage inter-VLAN, HSRP et NAT</h3>
-          <p class="desc">
-            Deux routeurs Cisco 2800 : router-on-a-stick, passerelle virtuelle HSRP avec bascule
-            automatique et NAT overload vers Internet.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 6</span>
-            <span class="tag">Cisco</span>
-            <span class="tag">HSRP</span>
-            <span class="tag">NAT</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+          <p>Deux routeurs Cisco 2800 : router-on-a-stick, passerelle virtuelle HSRP avec bascule automatique et NAT vers Internet.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-pat">Patrimoine</li><li class="c-serv">Service</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- TP : DMZ OPNsense -->
-        <a href="projects/tp-dmz-opnsense.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-live"><span class="dot"></span> TP réalisé</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M6 13l3-3 3 2 4-5 2 2M8 21h8M12 17v4"/></svg>
-          </div>
+        <a href="projects/tp-dmz-opnsense.html" class="rp-card cat-tp">
+          <div class="rp-top"><span class="rp-num">RP 7</span><span class="rp-where">TP Bristendal</span></div>
           <h3>DMZ et intranet derrière OPNsense</h3>
-          <p class="desc">
-            Pare-feu OPNsense sous Proxmox, intranet Apache 2 et Debian d'administration isolés en
-            DMZ, accès par intranet.bristendal.local.
-          </p>
-          <div class="tag-row">
-            <span class="tag">RP 7</span>
-            <span class="tag">OPNsense</span>
-            <span class="tag">Proxmox</span>
-            <span class="tag">Apache</span>
-          </div>
-          <span class="card-link">Voir l'étude de cas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+          <p>Pare-feu OPNsense sous Proxmox, intranet Apache 2 et Debian d’administration isolés en DMZ.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-pres">Présence en ligne</li><li class="c-serv">Service</li></ul>
+          <span class="rp-more">Voir la réalisation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
-        <!-- Veille technologique -->
-        <a href="projects/veille-ransomwares.html" class="project-card reveal">
-          <div class="glow"></div>
-          <div class="project-status status-soon"><span class="dot"></span> Veille</div>
-          <div class="thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6l-8-3Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"/></svg>
-          </div>
+        <a href="projects/veille-ransomwares.html" class="rp-card cat-veille veille">
+          <div class="rp-top"><span class="rp-num">Veille</span><span class="rp-where">Depuis 09/2026</span></div>
           <h3>Veille : les ransomwares</h3>
-          <p class="desc">
-            Évolution de la menace (RaaS, double extorsion, hyperviseurs ciblés) et bonnes pratiques
-            pour protéger une PME : sauvegardes 3-2-1, MFA, segmentation.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Veille</span>
-            <span class="tag">Cybersécurité</span>
-          </div>
-          <span class="card-link">Lire la synthèse
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
+          <p>Une menace qui se professionnalise (RaaS, double extorsion, hyperviseurs ciblés) et comment protéger une PME.</p>
+          <ul class="comp-list" aria-label="Compétences du bloc 1"><li class="c-dev">Développement professionnel</li></ul>
+          <span class="rp-more">Lire la veille <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
-
       </div>
     </div>
   </section>
 
-  <!-- SYNTHESE E5 -->
-  <section class="section" id="synthese">
+  <section class="section" id="synthese" aria-labelledby="synthese-title">
     <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">Épreuve E5</div>
-        <h2>Tableau de synthèse des réalisations</h2>
-        <p>Chaque ligne mène à la page de la réalisation. Les six colonnes sont les compétences du bloc 1.</p>
+      <div class="section-head">
+        <div>
+          <h2 id="synthese-title">Tableau de synthèse</h2>
+          <p>Les six colonnes sont les compétences du bloc 1. Chaque ligne mène à la page de la réalisation.</p>
+        </div>
+        <div class="synth-actions">
+          <a href="docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+            Fichier .xlsx
+          </a>
+          <a href="docs/documentation-infrastructure-bristendal.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Doc. bristendal.local (PDF)</a>
+        </div>
       </div>
-      <div class="table-wrap reveal">
+      <div class="table-wrap">
         <table class="k synth-e5">
-          <thead><tr><th>Réalisation professionnelle</th><th>Période</th><th class="c">Gérer le patrimoine informatique</th><th class="c">Répondre aux incidents et aux demandes d'assistance et d'évolution</th><th class="c">Développer la présence en ligne de l'organisation</th><th class="c">Travailler en mode projet</th><th class="c">Mettre à disposition des utilisateurs un service informatique</th><th class="c">Organiser son développement professionnel</th></tr></thead>
+          <thead><tr><th scope="col">Réalisation professionnelle</th><th scope="col">Période</th><th scope="col" class="c">Gérer le patrimoine informatique</th><th scope="col" class="c">Répondre aux incidents et aux demandes d’assistance et d’évolution</th><th scope="col" class="c">Développer la présence en ligne de l’organisation</th><th scope="col" class="c">Travailler en mode projet</th><th scope="col" class="c">Mettre à disposition des utilisateurs un service informatique</th><th scope="col" class="c">Organiser son développement professionnel</th></tr></thead>
           <tbody>
           <tr class="grp"><td colspan="8">Réalisations en cours de formation</td></tr>
-          <tr><td><a href="projects/changement-cpu-gpu.html">RP 3 · Remplacement du processeur et de la carte graphique d'un poste de travail</a></td><td class="per">1re année</td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td></tr>
-          <tr><td><a href="projects/tp-active-directory.html">RP 4 · Domaine bristendal.local : Active Directory, DNS et stratégies de groupe</a></td><td class="per">07/09/26 au 18/09/26</td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td></tr>
-          <tr><td><a href="projects/tp-vlan.html">RP 5 · VLAN et Rapid-PVST sur trois commutateurs en triangle</a></td><td class="per">21/09/26 au 02/10/26</td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td></tr>
-          <tr><td><a href="projects/tp-hsrp-nat.html">RP 6 · Routage inter-VLAN, haute disponibilité HSRP et NAT</a></td><td class="per">05/10/26 au 16/10/26</td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td></tr>
-          <tr><td><a href="projects/tp-dmz-opnsense.html">RP 7 · DMZ et intranet derrière un pare-feu OPNsense</a></td><td class="per">19/10/26 au 03/11/26</td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td></tr>
-          <tr><td><a href="projects/veille-ransomwares.html">Veille technologique : les ransomwares, une menace qui se professionnalise</a></td><td class="per">01/09/26 au 17/11/26</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td></tr>
+          <tr><th scope="row"><a href="projects/changement-cpu-gpu.html">RP 3 · Remplacement du processeur et de la carte graphique d'un poste de travail</a></th><td class="per">1re année</td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/tp-active-directory.html">RP 4 · Domaine bristendal.local : Active Directory, DNS et stratégies de groupe</a></th><td class="per">07/09/26 au 18/09/26</td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/tp-vlan.html">RP 5 · VLAN et Rapid-PVST sur trois commutateurs en triangle</a></th><td class="per">21/09/26 au 02/10/26</td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/tp-hsrp-nat.html">RP 6 · Routage inter-VLAN, haute disponibilité HSRP et NAT</a></th><td class="per">05/10/26 au 16/10/26</td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/tp-dmz-opnsense.html">RP 7 · DMZ et intranet derrière un pare-feu OPNsense</a></th><td class="per">19/10/26 au 03/11/26</td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/veille-ransomwares.html">Veille technologique : les ransomwares, une menace qui se professionnalise</a></th><td class="per">01/09/26 au 17/11/26</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td></tr>
           <tr class="grp"><td colspan="8">Réalisations en milieu professionnel, 1re année</td></tr>
-          <tr><td><a href="projects/support-inetum-tdf.html">RP 1 · Support utilisateurs N1 pour le client TDF (alternance Inetum)</a></td><td class="per">01/09/25 au 30/06/26</td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/support-inetum-tdf.html">RP 1 · Support utilisateurs N1 pour le client TDF (alternance Inetum)</a></th><td class="per">01/09/25 au 30/06/26</td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td></tr>
           <tr class="grp"><td colspan="8">Réalisations en milieu professionnel, 2e année</td></tr>
-          <tr><td><a href="projects/comptes-ad-parc-tdf.html">RP 2 · Comptes Active Directory et gestion du parc pour le client TDF (alternance Inetum)</a></td><td class="per">01/09/26 au 17/11/26</td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"><span class="x" aria-label="compétence mobilisée"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><th scope="row"><a href="projects/comptes-ad-parc-tdf.html">RP 2 · Comptes Active Directory et gestion du parc pour le client TDF (alternance Inetum)</a></th><td class="per">01/09/26 au 17/11/26</td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"><span class="x" role="img" aria-label="oui"></span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
           </tbody>
         </table>
       </div>
-      <div class="synth-actions reveal">
-        <a href="docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download>Télécharger le tableau de synthèse (.xlsx)</a>
-        <a href="docs/documentation-infrastructure-bristendal.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Documentation d'infrastructure bristendal.local (PDF)</a>
+    </div>
+  </section>
+
+  <section class="section alt" id="parcours" aria-labelledby="parcours-title">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 id="parcours-title">Parcours</h2>
+          <p>De la découverte de l’informatique au lycée à l’alternance en ESN.</p>
+        </div>
+      </div>
+      <ol class="path">
+        <li><span class="when">2025</span><h3>Bac général</h3><p>Spécialités NSI et HGGSP.</p></li>
+        <li><span class="when">2025 – 2026</span><h3>BTS SIO, 1re année en alternance</h3><p>ESUP, en alternance chez Inetum (ESN). Choix de l’option SISR.</p></li>
+        <li class="now"><span class="when">2026 – 2027 · en cours</span><h3>BTS SIO SISR, 2e année en alternance</h3><p>Inetum, pour le client TDF : support N1, tickets, comptes Active Directory, parc informatique.</p></li>
+        <li><span class="when">Après le BTS</span><h3>Licence professionnelle (Bac+3)</h3><p>Spécialisée en réseaux, télécoms ou cybersécurité.</p></li>
+      </ol>
+      <div class="pro">
+        <div>
+          <h3>Projet professionnel</h3>
+          <p>Poursuivre en licence professionnelle spécialisée en réseaux, télécoms ou cybersécurité, pour évoluer vers l’administration des systèmes et des réseaux.</p>
+        </div>
+        <div>
+          <h3>Environnement d’apprentissage</h3>
+          <p>Mes cours et TP à l’ESUP, l’alternance chez Inetum, mon <a href="projects/serveur-minecraft.html">serveur Debian personnel</a> qui me sert de laboratoire, et ma <a href="projects/veille-ransomwares.html">veille</a> (Feedly, CERT-FR, ANSSI).</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
+  <section class="section" id="skills" aria-labelledby="skills-title">
     <div class="container">
-      <div class="contact-box reveal">
+      <div class="section-head">
         <div>
-          <h2>On en discute ?</h2>
-          <p>Ouvert aux opportunités de stage et d'alternance en SISR. N'hésitez pas à me contacter.</p>
+          <h2 id="skills-title">Compétences techniques</h2>
+          <p>Les technologies réellement utilisées dans mes réalisations, regroupées par domaine.</p>
+        </div>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg><h3>Systèmes et annuaire</h3></div>
+          <ul class="chips"><li>Windows Server 2022</li><li>Active Directory</li><li>DNS</li><li>GPO</li><li>Debian</li><li>Proxmox VE</li><li>systemd</li></ul>
+          <p class="src">Utilisé dans : RP 2, RP 4, RP 7, projet personnel</p>
+        </div>
+        <div class="skill">
+          <div class="skill-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg><h3>Réseau</h3></div>
+          <ul class="chips"><li>VLAN 802.1Q</li><li>Trunks</li><li>Rapid-PVST</li><li>Routage inter-VLAN</li><li>HSRP</li><li>NAT overload</li><li>Cisco IOS</li></ul>
+          <p class="src">Utilisé dans : RP 5, RP 6</p>
+        </div>
+        <div class="skill">
+          <div class="skill-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg><h3>Sécurité</h3></div>
+          <ul class="chips"><li>OPNsense</li><li>DMZ</li><li>Politique de mots de passe</li><li>Segmentation</li><li>Habilitations</li><li>Veille CERT-FR et ANSSI</li></ul>
+          <p class="src">Utilisé dans : RP 2, RP 4, RP 7, veille</p>
+        </div>
+        <div class="skill">
+          <div class="skill-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg><h3>Support et parc</h3></div>
+          <ul class="chips"><li>Gestion de tickets</li><li>Prise en main à distance</li><li>Escalade N2</li><li>Comptes utilisateurs</li><li>Inventaire du parc</li></ul>
+          <p class="src">Utilisé dans : RP 1, RP 2</p>
+        </div>
+        <div class="skill">
+          <div class="skill-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx=".8"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><h3>Matériel</h3></div>
+          <ul class="chips"><li>Compatibilité CPU et GPU</li><li>Mise à jour du BIOS</li><li>Montage</li><li>Tests OCCT et HWiNFO</li></ul>
+          <p class="src">Utilisé dans : RP 3</p>
+        </div>
+        <div class="skill">
+          <div class="skill-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><h3>Méthode et outils</h3></div>
+          <ul class="chips"><li>Documentation technique</li><li>Git et GitHub</li><li>Feedly</li></ul>
+          <p class="src">Utilisé dans : documentation bristendal.local, ce portfolio, veille</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="labo" aria-labelledby="labo-title">
+    <div class="container">
+      <div class="lab">
+        <div>
+          <h3 id="labo-title">Projet personnel : serveur Minecraft sous Debian</h3>
+          <p>Mon laboratoire en dehors du BTS : un serveur Minecraft Java (Paper) sous Linux, accessible depuis Internet par un tunnel playit.gg, protégé par une whitelist et administré comme un service systemd.</p>
+          <a href="projects/serveur-minecraft.html" class="btn btn-ghost">Voir le projet
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+        <pre class="lab-term" aria-label="Exemple de commandes sur le serveur"><span class="c">$</span> systemctl status minecraft
+<span class="g">● minecraft.service — active (running)</span>
+<span class="c">&gt;</span> whitelist add Ttekka
+Added Ttekka to the whitelist</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact">
+        <div>
+          <h2 id="contact-title">Me contacter</h2>
+          <p>Par e-mail : <span class="mail">riquiergwendal@gmail.com</span></p>
         </div>
         <div class="contact-links">
-          <a href="mailto:riquiergwendal@gmail.com" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3V6Zm0 0 9 7 9-7"/></svg>
-            Email
-          </a>
-          <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-            GitHub
+          <a href="mailto:riquiergwendal@gmail.com" class="btn btn-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            E-mail
           </a>
           <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener" class="btn btn-ghost">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
             LinkedIn
+          </a>
+          <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            GitHub
           </a>
         </div>
       </div>
@@ -474,7 +293,7 @@
 
 <footer>
   <div class="container">
-    <p>&copy; <span id="year"></span> Gwendal Riquier — BTS SIO SISR. Conçu et codé à la main.</p>
+    <p>&copy; <span id="year">2026</span> Gwendal Riquier · BTS SIO SISR</p>
     <div class="foot-links">
       <a href="https://github.com/Ttekka" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/gwendal-riquier-06201535b/" target="_blank" rel="noopener">LinkedIn</a>

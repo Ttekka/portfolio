@@ -4,46 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TP DMZ et intranet derrière OPNsense — Gwendal Riquier</title>
+<meta name="theme-color" content="#ffffff">
 <meta name="description" content="TP BTS SIO SISR : DMZ hébergée sur Proxmox, pare-feu OPNsense, intranet Apache 2 et serveur Debian d'administration.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <nav class="navbar scrolled" id="navbar">
   <div class="container">
-    <a href="../index.html" class="brand"><span class="dot"></span>G. Riquier<small>&nbsp;/ BTS SIO</small></a>
+    <a href="../index.html" class="brand">Gwendal Riquier<small>BTS SIO SISR</small></a>
     <ul class="nav-links">
-      <li><a href="../index.html#about">À propos</a></li>
+      <li><a href="../index.html#projects">Réalisations</a></li>
+      <li><a href="../index.html#synthese">Synthèse</a></li>
+      <li><a href="../index.html#parcours">Parcours</a></li>
       <li><a href="../index.html#skills">Compétences</a></li>
-      <li><a href="../index.html#projects" class="active">Projets</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="https://github.com/Ttekka" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
-        GitHub
-      </a>
-      <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
+      <a href="../docs/tableau-synthese-E5-Gwendal-Riquier.xlsx" class="btn btn-primary" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg> Tableau de synthèse</a>
     </div>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="../index.html#about">À propos</a>
+  <a href="../index.html#projects">Réalisations</a>
+  <a href="../index.html#synthese">Synthèse</a>
+  <a href="../index.html#parcours">Parcours</a>
   <a href="../index.html#skills">Compétences</a>
-  <a href="../index.html#projects">Projets</a>
   <a href="../index.html#contact">Contact</a>
 </div>
 
 <header class="case-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Projets</a> <span>/</span> <span>TP DMZ OPNsense</span>
+      <a href="../index.html">Accueil</a> <span>/</span> <a href="../index.html#projects">Réalisations</a> <span>/</span> <span>TP DMZ OPNsense</span>
     </div>
+    <h1>DMZ et intranet derrière un pare-feu OPNsense</h1>
+    <p class="summary">
+      L'intranet <b>Apache 2</b> de Bristendal est isolé dans une <b>DMZ</b> derrière un pare-feu <b>OPNsense</b>, le tout virtualisé sur <b>Proxmox</b>, avec un serveur <b>Debian</b> d'administration.
+    </p>
     <div class="case-tags">
       <span class="tag">RP 7</span>
       <span class="tag">OPNsense</span>
@@ -51,15 +54,11 @@
       <span class="tag">Apache</span>
       <span class="tag">DMZ</span>
     </div>
-    <h1>DMZ et intranet derrière un pare-feu OPNsense</h1>
-    <p class="summary">
-      L'intranet <b>Apache 2</b> de Bristendal est isolé dans une <b>DMZ</b> derrière un pare-feu <b>OPNsense</b>, le tout virtualisé sur <b>Proxmox</b>, avec un serveur <b>Debian</b> d'administration.
-    </p>
     <div class="case-meta">
-      <div class="m"><b>Réalisé</b><span>Statut</span></div>
-      <div class="m"><b>BTS SIO · ESUP</b><span>Cadre</span></div>
-      <div class="m"><b>Proxmox · OPNsense · Debian</b><span>Environnement</span></div>
-      <div class="m"><b>bristendal.local</b><span>Domaine</span></div>
+      <div class="m"><span>Statut</span><b>Réalisé</b></div>
+      <div class="m"><span>Cadre</span><b>BTS SIO · ESUP</b></div>
+      <div class="m"><span>Environnement</span><b>Proxmox · OPNsense · Debian</b></div>
+      <div class="m"><span>Domaine</span><b>bristendal.local</b></div>
     </div>
   </div>
 </header>
@@ -111,12 +110,12 @@
   <div class="container">
     <h2>Mise en œuvre</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div><h4>Proxmox</h4><p>Hyperviseur dans le VLAN 30 (192.168.30.2/29), branché sur SW1 Fa0/25, qui héberge OPNsense, Debian admin et l'intranet.</p></div></div>
-      <div class="step"><div class="num">2</div><div><h4>OPNsense</h4><p>WAN 192.168.30.3/29 côté VLAN 30, LAN 172.16.42.254/28 côté DMZ ; passerelle par défaut 192.168.30.2.</p></div></div>
-      <div class="step"><div class="num">3</div><div><h4>Serveurs de la DMZ</h4><p>Intranet Apache 2 en 172.16.42.252 et Debian admin en 172.16.42.253, passerelle 172.16.42.254.</p></div></div>
-      <div class="step"><div class="num">4</div><div><h4>Accès par le nom</h4><p>Enregistrement DNS <code>intranet</code> sur le contrôleur de domaine : la page s'ouvre sur http://intranet.bristendal.local.</p></div></div>
-      <div class="step"><div class="num">5</div><div><h4>Tests</h4><p>Depuis le PC client : <code>ping 172.16.42.252</code> puis ouverture de http://172.16.42.252 et http://intranet.bristendal.local.</p></div></div>
-      <div class="step"><div class="num">6</div><div><h4>Améliorations identifiées</h4><p>Passer l'intranet en HTTPS avec un certificat, documenter précisément les règles saisies dans OPNsense.</p></div></div>
+      <div class="step"><div class="num">1</div><div><h3>Proxmox</h3><p>Hyperviseur dans le VLAN 30 (192.168.30.2/29), branché sur SW1 Fa0/25, qui héberge OPNsense, Debian admin et l'intranet.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>OPNsense</h3><p>WAN 192.168.30.3/29 côté VLAN 30, LAN 172.16.42.254/28 côté DMZ ; passerelle par défaut 192.168.30.2.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>Serveurs de la DMZ</h3><p>Intranet Apache 2 en 172.16.42.252 et Debian admin en 172.16.42.253, passerelle 172.16.42.254.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>Accès par le nom</h3><p>Enregistrement DNS <code>intranet</code> sur le contrôleur de domaine : la page s'ouvre sur http://intranet.bristendal.local.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h3>Tests</h3><p>Depuis le PC client : <code>ping 172.16.42.252</code> puis ouverture de http://172.16.42.252 et http://intranet.bristendal.local.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h3>Améliorations identifiées</h3><p>Passer l'intranet en HTTPS avec un certificat, documenter précisément les règles saisies dans OPNsense.</p></div></div>
     </div>
   </div>
 </section>
@@ -155,10 +154,15 @@
     <p style="color:var(--text-dim);">D'autres TP et projets viendront compléter ce portfolio au fil de la formation.</p>
   </div>
   <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    <a href="../index.html#projects" class="btn btn-ghost">← Tous les projets</a>
+    <a href="../index.html#projects" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Toutes les réalisations</a>
     <a href="../index.html#contact" class="btn btn-primary">Me contacter</a>
   </div>
 </div>
+
+<nav class="container rp-pager" aria-label="Réalisation précédente et suivante">
+  <a class="prev" href="tp-hsrp-nat.html"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg> Précédent · RP 6</span><b>Routage, HSRP et NAT</b></a>
+  <a class="next" href="veille-ransomwares.html"><span>Veille · Suivant <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span><b>Les ransomwares</b></a>
+</nav>
 
 <footer>
   <div class="container">
